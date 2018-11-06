@@ -1,0 +1,57 @@
+﻿<mah:MetroWindow
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+    x:Class="WPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF"
+        Background="SlateGray" mc:Ignorable="d"  WindowState="Maximized" Title="Hi Tom!" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="0.4*"></ColumnDefinition>
+
+</Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+
+        </Grid.RowDefinitions>
+
+
+
+        <Label Grid.ColumnSpan="3" FontFamily="OCR A Extended" FontSize="60" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" >HI TOM!</Label>
+
+        <Grid  Grid.Row="1"  Grid.Column="1" Margin="20">
+           <Grid.RowDefinitions>
+               <RowDefinition></RowDefinition>
+               <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            
+            <ListBox ></ListBox>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button  Style="{DynamicResource MetroCircleButtonStyle}">Send </Button>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Margin="20">
+            <Button>Search friends</Button>
+            <ListBox ></ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="2" Margin="20">
+            <Button>Search Rooms</Button>
+            <ListBox ></ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="20">
+            
+        </StackPanel>       
+
+
+    </Grid>
+</mah:MetroWindow>
