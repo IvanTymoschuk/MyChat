@@ -4,6 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
+using WCF.Classes;
 
 namespace WCF.Interfaces
 {
@@ -11,6 +12,6 @@ namespace WCF.Interfaces
     public interface IMail
     {
         [OperationContract]
-        void SendCode(string Email);
+        void SendCode(UserDTO user,int code);
     }
 }
