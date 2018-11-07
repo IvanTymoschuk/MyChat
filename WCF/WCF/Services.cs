@@ -13,9 +13,12 @@ namespace WCF
 {
     public class Services : IUser
     {
-        List<UserDTO> users;
+        public List<UserDTO> users;
         
-       
+        public Services()
+        {
+            users = new List<UserDTO>();
+        }
 
         public bool Add_Friend(string FriendLogin)
         {
@@ -27,36 +30,39 @@ namespace WCF
             throw new NotImplementedException();
         }
 
-        public bool Confirming(UserDTO user, int Code)
+        public bool Confirming(int user_id, int Code)
         {
-            if (user.IsConfirmed == true)
-                return false;
-            if (users.Count == 0)
-                return false;
+
+          //  users = new List<UserDTO>();
+            users.Add(Registration("qwwer@qwqe", "123", "123"));
             
             string path = @"C:\Users\Root\Source\Repos\IvanTymoschuk\MyChat\WCF\WCF\bin\Debug\ConfirmCode.json";
             List<ConfirmJSON> ConfirmsCodes = null;
             string json = File.ReadAllText(path);
             ConfirmsCodes = JsonConvert.DeserializeObject<List<ConfirmJSON>>(json);
- 
-               foreach (ConfirmJSON el in ConfirmsCodes)
+
+
+            foreach(var el in ConfirmsCodes)
+            {
+                if (el.code==Code)
                 {
-                    if(el.user.Id==user.Id)
+                    foreach(var _el in users)
                     {
-                        if(el.code==Code)
+                        if(_el.Id==user_id)
                         {
-                            users.FirstOrDefault(x => x.Id == user.Id).IsConfirmed = true;
+                            _el.IsConfirmed = true;
                             return true;
                         }
                     }
+                   
                 }
-            
-            return false;
+            }
+           return false;
+
         }
 
         public UserDTO Registration(string Email, string Password, string Login)
         {
-            users = new List<UserDTO>();
             bool isExist = false;
             foreach (var el in users)
                 if (Email.ToLower() == el.Email.ToLower() || Login.ToLower() == el.Login.ToLower())
@@ -73,7 +79,7 @@ namespace WCF
                 mail.SendCode(u, code);
 
                 List<ConfirmJSON> confirms = new List<ConfirmJSON>();
-                ConfirmJSON confirm = new ConfirmJSON() { user = u, code = code };
+                ConfirmJSON confirm = new ConfirmJSON() { user_id=u.Id, code = code };
 
 
 

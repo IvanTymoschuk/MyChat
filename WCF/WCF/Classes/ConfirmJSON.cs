@@ -11,7 +11,7 @@ namespace WCF.Classes
     public class ConfirmJSON
     {
         [DataMember]
-        public UserDTO user { get; set; }
+        public int user_id { get; set; }
         [DataMember]
         public int code { get; set; }
     }
