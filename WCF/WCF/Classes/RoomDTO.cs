@@ -13,6 +13,7 @@ namespace WCF.Classes
         public RoomDTO()
         {
             Messages = new List<MessageDTO>();
+            users = new List<UserDTO>();
         }
         [DataMember]
         public int Id { get; set; }
@@ -21,6 +22,7 @@ namespace WCF.Classes
         [DataMember]
         public UserDTO User { get; set; }
         [DataMember]
+        public List<UserDTO> users { get; set; }
         public List<MessageDTO> Messages { get; set; }
         [DataMember]
         public bool IsPublish { get; set; }

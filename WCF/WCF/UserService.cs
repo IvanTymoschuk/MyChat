@@ -118,6 +118,16 @@ namespace WCF
                 return null;
         }
 
+        public void RemoveFriend(int your_id, int friend_id)
+        {
+            users.FirstOrDefault(x => x.Id == your_id).Friends.Remove(users.FirstOrDefault(x => x.Id == friend_id));
+        }
+
+        public void RemoveRoom(int your_id, int room_id)
+        {
+          // users.FirstOrDefault(x => x.Id == your_id).Rooms.Remove(users.FirstOrDefault(x => x.Id == friend_id));
+        }
+
         public bool ResendCode(int user_id)
         {
            foreach(var el in confirmCodes)
