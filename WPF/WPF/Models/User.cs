@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using WPF.Commands;
 
 namespace DAL.Models
 {
-    public class User
+    public class User 
     {
         public User()
         {
@@ -29,5 +31,8 @@ namespace DAL.Models
         public List<User> Friends { get; set; }
 
         public string Email { get; set; }
+
+    
+
     }
 }

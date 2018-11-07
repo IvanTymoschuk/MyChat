@@ -6,10 +6,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF"
+    xmlns:Converters="clr-namespace:WPF.Converters"
     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        Background="DimGray" mc:Ignorable="d"  WindowState="Maximized" Title="Hi Tom!" ResizeMode="NoResize">
+        Background="DimGray" mc:Ignorable="d"  WindowState="Maximized" Title="{Binding ActiveUsers}" ResizeMode="NoResize">
 
     <Grid>
+        <Grid.Resources>
+            <Converters:NameConverter x:Key="NameConverter"></Converters:NameConverter>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
@@ -49,9 +53,9 @@
             </ListBox>
 
 
-            <TextBox Grid.Row="1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Center" FontSize="16"></TextBox>
+            <TextBox Text="{Binding Message}" Grid.Row="1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Center" FontSize="16"></TextBox>
         
-            <Button Grid.Column="2" Grid.Row="1">
+            <Button Grid.Column="2" Grid.Row="1" Click="Button_Click">
                 <iconPacks:PackIconMaterial Kind="Send"></iconPacks:PackIconMaterial>
             </Button>
             <Button  Grid.Column="1" Grid.Row="1">
@@ -64,7 +68,39 @@
 
         <StackPanel Grid.Row="1" Margin="20">
             <Button>Search friends</Button>
-            <ListBox ></ListBox>
+            <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" >
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.15*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.15*"></ColumnDefinition>
+
+
+                            </Grid.ColumnDefinitions>
+                                <Button   Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                                <TextBlock Text="{Binding Name,Converter={StaticResource NameConverter}}"></TextBlock>
+                            </Button>
+
+                            <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14">  </TextBlock>
+                                <TextBlock Text="{Binding Email}" Foreground="DarkGray" FontSize="12"></TextBlock>
+
+                            </StackPanel>
+
+                            <Button Grid.Column="2" Margin="2">
+                                <iconPacks:PackIconMaterial Kind="AccountRemove" Foreground="Red"></iconPacks:PackIconMaterial>
+                            </Button>
+                            <Button Command="{Binding SendCommand}" CommandParameter="{Binding SelectedUser}" Grid.Column="3" Margin="2" >
+                                <iconPacks:PackIconMaterial Kind="Message" Foreground="Green"></iconPacks:PackIconMaterial>
+                            </Button>
+                            
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="20">
