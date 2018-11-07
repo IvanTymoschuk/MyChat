@@ -13,56 +13,58 @@ namespace WCF
 {
     public class UserService : IUser
     {
-        public List<UserDTO> users;
-        
+        public List<UserDTO> users = null;
+        public List<ConfirmCodeDTO> confirmCodes = null;
         public UserService()
         {
             users = new List<UserDTO>();
+            confirmCodes = new List<ConfirmCodeDTO>();
         }
 
-        public bool Add_Friend(string FriendLogin)
+      
+
+        public void Add_Friend(int your_id, int friend_id)
         {
-            throw new NotImplementedException();
+            users.FirstOrDefault(x => x.Id == your_id).Friends.Add(users.FirstOrDefault(x => x.Id == friend_id));
         }
 
-        public void Add_Room(RoomDTO room)
+     
+        public void Add_Room(int your_id, int room_id)
         {
-            throw new NotImplementedException();
+           //users.FirstOrDefault(x=> x.Id == your_id).Rooms.Add()
         }
 
         public bool Confirming(int user_id, int Code)
         {
-
-          //  users = new List<UserDTO>();
-            users.Add(Registration("qwwer@qwqe", "123", "123"));
-            
-            string path = @"C:\Users\Root\Source\Repos\IvanTymoschuk\MyChat\WCF\WCF\bin\Debug\ConfirmCode.json";
-            List<ConfirmJSON> ConfirmsCodes = null;
-            string json = File.ReadAllText(path);
-            ConfirmsCodes = JsonConvert.DeserializeObject<List<ConfirmJSON>>(json);
-
-
-            foreach(var el in ConfirmsCodes)
+            ConfirmCodeDTO confirmCode = new ConfirmCodeDTO();
+            foreach(var el in confirmCodes)
             {
-                if (el.code==Code)
+                using (StreamWriter sw = new StreamWriter("log.txt"))
                 {
+                    sw.WriteLine("USER_ID: " + el.user.Id);
+                }
+                if (el.user.Id==user_id && el.code==Code)
+                {
+                   
                     foreach(var _el in users)
                     {
                         if(_el.Id==user_id)
                         {
                             _el.IsConfirmed = true;
+                            confirmCode = el;
                             return true;
                         }
                     }
-                   
                 }
             }
-           return false;
-
+            return false;
         }
+
+     
 
         public UserDTO Registration(string Email, string Password, string Login)
         {
+        
             bool isExist = false;
             foreach (var el in users)
                 if (Email.ToLower() == el.Email.ToLower() || Login.ToLower() == el.Login.ToLower())
@@ -70,46 +72,64 @@ namespace WCF
             if (isExist == false)
             {
                 Random random = new Random();
-                int code = random.Next(11111, 99999);
+                int code = random.Next(1111, 9999);
                 UserDTO u = new UserDTO() { Id=code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null };
 
                 users.Add(u);
-
+         
                 MailService mail = new MailService();
                 mail.SendCode(u, code);
 
-                List<ConfirmJSON> confirms = new List<ConfirmJSON>();
-                ConfirmJSON confirm = new ConfirmJSON() { user_id=u.Id, code = code };
+                #region GavnoCode
+                //List<ConfirmJSON> confirms = new List<ConfirmJSON>();
+                //ConfirmJSON confirm = new ConfirmJSON() { user_id=u.Id, code = code };
 
 
 
-                string path = @"C:\Users\Root\Source\Repos\IvanTymoschuk\MyChat\WCF\WCF\bin\Debug\ConfirmCode.json";
-                if (File.Exists(path) == false)
-                    File.Create(path);
+                //string path = @"C:\Users\Root\Source\Repos\IvanTymoschuk\MyChat\WCF\WCF\bin\Debug\ConfirmCode.json";
+                //if (File.Exists(path) == false)
+                //    File.Create(path);
 
-                string json = File.ReadAllText(path);
-                List<ConfirmJSON> ConfirmsCodes = null;
-                ConfirmsCodes = JsonConvert.DeserializeObject<List<ConfirmJSON>>(json);
-                if(ConfirmsCodes==null)
-                {
-                    confirms.Add(confirm);
-                    json = JsonConvert.SerializeObject(confirms);
-                    File.WriteAllText(path, json);
-                    return u;
-                }
-                foreach (ConfirmJSON el in ConfirmsCodes)
-                {
-                  confirms.Add(el);
-                }
-                confirms.Add(confirm);
-                json = JsonConvert.SerializeObject(confirms);
-                File.WriteAllText(path, json);
+                //string json = File.ReadAllText(path);
+                //List<ConfirmJSON> ConfirmsCodes = null;
+                //ConfirmsCodes = JsonConvert.DeserializeObject<List<ConfirmJSON>>(json);
+                //if(ConfirmsCodes==null)
+                //{
+                //    confirms.Add(confirm);
+                //    json = JsonConvert.SerializeObject(confirms);
+                //    File.WriteAllText(path, json);
+                //    return u;
+                //}
+                //foreach (ConfirmJSON el in ConfirmsCodes)
+                //{
+                //  confirms.Add(el);
+                //}
+                //confirms.Add(confirm);
+                //json = JsonConvert.SerializeObject(confirms);
+                //File.WriteAllText(path, json);
+                #endregion
+
+                confirmCodes.Add(new ConfirmCodeDTO() { Id = code, code = code, user = u });
 
                 return u;
 
             }
             else
                 return null;
+        }
+
+        public bool ResendCode(int user_id)
+        {
+           foreach(var el in confirmCodes)
+            {
+                if (el.user.Id==user_id)
+                {
+                    MailService mail = new MailService();
+                    mail.SendCode(el.user, el.code);
+                    return true;
+                }
+            }
+            return false;
         }
 
         public UserDTO SignIn(string Email, string password)
@@ -124,6 +144,20 @@ namespace WCF
                 }
             }
             return null;
+        }
+
+        IEnumerable<UserDTO> IUser.getSeachPeople(string Name)
+        {
+            List<UserDTO> SearchUsers = new List<UserDTO>();
+
+            foreach (var el in users)
+            {
+                if(el.Login.Contains(Name)==true)
+                {
+                    SearchUsers.Add(el);
+                }
+            }
+            return SearchUsers;
         }
     }
 }

@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AttachDTO.cs" />
+    <Compile Include="Classes\ConfirmCodeDTO.cs" />
     <Compile Include="Classes\ConfirmJSON.cs" />
     <Compile Include="Classes\MessageDTO.cs" />
     <Compile Include="Classes\RoomDTO.cs" />

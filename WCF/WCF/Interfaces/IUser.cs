@@ -18,8 +18,12 @@ namespace WCF.Interfaces
         [OperationContract]
         bool Confirming(int user_id, int Code);
         [OperationContract]
-        bool Add_Friend(string FriendLogin);
+        bool ResendCode(int user_id);
         [OperationContract]
-        void Add_Room(RoomDTO room);
+        IEnumerable<UserDTO> getSeachPeople(string Name);
+        [OperationContract]
+        void Add_Friend(int your_id, int friend_id);
+        [OperationContract]
+        void Add_Room(int your_id, int room_id);
     }
 }
