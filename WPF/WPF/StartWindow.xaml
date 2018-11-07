@@ -23,9 +23,9 @@
 
 </Grid.ColumnDefinitions>
 
-            <Label FontSize="72" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="1" Name="Label">Welcome</Label>
-            <Button Grid.Row="2" Margin="200,20,10,50" >Sign In</Button>
-        <Button Grid.Row="2" Margin="10,20,200,50"  Grid.Column="1">Sign Up</Button>
+            <Label FontSize="72" Grid.ColumnSpan="2" HorizontalAlignment="Center" Grid.Row="1" Name="Label" >Welcome</Label>
+        <Button Grid.Row="2" Margin="200,20,10,50" Click="ButtonBase_OnClick">Sign In</Button>
+        <Button Grid.Row="2" Margin="10,20,200,50"  Grid.Column="1" Name="btnUp" Click="BtnUp_OnClick">Sign Up</Button>
 
 
 </Grid>

@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,27 +16,17 @@ using MahApps.Metro.Controls;
 namespace WPF
 {
     /// <summary>
-    /// Interaction logic for StartWindow.xaml
+    /// Interaction logic for Sign_in.xaml
     /// </summary>
-    public partial class StartWindow : MetroWindow
+    public partial class Sign_in : MetroWindow
     {
-        public StartWindow()
+        public Sign_in()
         {
             InitializeComponent();
-
         }
-
-        private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
+        private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
-            Sign_in window=new Sign_in();
-            window.ShowDialog();
-        }
-
-
-        private void BtnUp_OnClick(object sender, RoutedEventArgs e)
-        {
-            Sign_up window = new Sign_up();
-            window.ShowDialog();
+            this.Close();
         }
     }
 }
