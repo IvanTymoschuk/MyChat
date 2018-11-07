@@ -11,11 +11,11 @@ using WCF.Interfaces;
 
 namespace WCF
 {
-    public class Services : IUser
+    public class UserService : IUser
     {
         public List<UserDTO> users;
         
-        public Services()
+        public UserService()
         {
             users = new List<UserDTO>();
         }
