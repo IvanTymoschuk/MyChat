@@ -18,6 +18,7 @@ namespace WCF
             if (attach != null)
             {
               attaches = new List<AttachDTO>();
+                attaches.Add(attach);
             }
             MessageDTO message = new MessageDTO() {Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
         }

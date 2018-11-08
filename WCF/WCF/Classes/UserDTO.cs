@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using WCF.Interfaces;
 
 namespace WCF.Classes
 {
@@ -29,5 +30,6 @@ namespace WCF.Classes
         public List<UserDTO> Friends { get; set; }
         [DataMember]
         public string Email { get; set; }
+        public IUserCallback callback { get; set; }
     }
 }
