@@ -1,7 +1,9 @@
-﻿using System;
+﻿using LoggerLibrary;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using WCF.Classes;
@@ -11,14 +13,19 @@ namespace WCF
 {
     public class Service : IMessage, IRoom, IUser
     {
+        public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
         public List<UserDTO> users = null;
         public List<ConfirmCodeDTO> confirmCodes = null;
+        //private static string Path = @"loh.txt";
+
+
         public Service()
         {
             users = new List<UserDTO>();
             confirmCodes = new List<ConfirmCodeDTO>();
+            userCallbacks.Add(OperationContext.Current.GetCallbackChannel<IUserCallback>());
+            Logger.Log("User Added");
         }
-
 
 
 
@@ -234,11 +241,13 @@ namespace WCF
 
 
 
-        public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
+
+
 
 
         public void SendMessage(string body, RoomDTO room, UserDTO sender, AttachDTO attach = null)
         {
+
             List<AttachDTO> attaches = null;
             if (attach != null)
             {
@@ -247,7 +256,7 @@ namespace WCF
             }
             MessageDTO message = new MessageDTO() { Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
 
-
+             
 
         }
 
