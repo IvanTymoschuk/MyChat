@@ -90,12 +90,7 @@
 
                             </StackPanel>
 
-                            <Button Grid.Column="2" Margin="2">
-                                <iconPacks:PackIconMaterial Kind="AccountRemove" Foreground="Red"></iconPacks:PackIconMaterial>
-                            </Button>
-                            <Button Command="{Binding SendCommand}" CommandParameter="{Binding SelectedUser}" Grid.Column="3" Margin="2" >
-                                <iconPacks:PackIconMaterial Kind="Message" Foreground="Green"></iconPacks:PackIconMaterial>
-                            </Button>
+                           
                             
                         </Grid>
                     </DataTemplate>

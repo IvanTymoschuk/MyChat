@@ -1,4 +1,4 @@
-﻿using DAL.Models;
+﻿using Models;
 using GalaSoft.MvvmLight;
 using System;
 using System.Collections.Generic;
@@ -27,7 +27,10 @@ namespace WPF.ViewModels
             }
             set
             {
+
+
                 _selectedUser = value;
+               
                 RaisePropertyChanged();
             }
         }

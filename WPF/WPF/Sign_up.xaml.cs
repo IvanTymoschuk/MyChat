@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WPF.ViewModels.WindowViewModels;
 
 namespace WPF
 {
@@ -23,6 +24,9 @@ namespace WPF
         public Sign_up()
         {
             InitializeComponent();
+
+            var Supvm = new Sign_upViewModel();
+            this.DataContext = Supvm;
         }
 
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)

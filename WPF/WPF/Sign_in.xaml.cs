@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using MahApps.Metro.Controls;
+using WPF.MockModuls;
+using WPF.ViewModels.WindowViewModels;
 
 namespace WPF
 {
@@ -23,6 +25,10 @@ namespace WPF
         public Sign_in()
         {
             InitializeComponent();
+
+            var Sinvm = new Sign_inViewModel();
+            this.DataContext = Sinvm;
+
         }
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {

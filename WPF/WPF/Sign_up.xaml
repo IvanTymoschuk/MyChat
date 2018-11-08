@@ -43,7 +43,7 @@
             <iconPacks:PackIconMaterial Kind="Account"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="1" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="2" Width="200" Text="{Binding Name}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
 
 
 
@@ -53,7 +53,7 @@
             <iconPacks:PackIconMaterial Kind="Login"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="2" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding Login}" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
 
 
 
@@ -63,7 +63,7 @@
             <iconPacks:PackIconMaterial Kind="TextboxPassword"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="3" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="3" Grid.Column="2" Width="200" Text="{Binding Password}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
 
 
 
@@ -73,9 +73,11 @@
             <iconPacks:PackIconMaterial Kind="Email"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="4" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="4" Grid.Column="2" Width="200" Text="{Binding Email}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
 
-        <Button Grid.ColumnSpan="3" Grid.Row="5" Margin="10" Width="100" >Confirm</Button>
+        <Button Grid.ColumnSpan="3" Grid.Row="5" Margin="10" Width="100" Command="{Binding SendCommand}" >Confirm</Button>
 
+
+        <TextBlock Grid.ColumnSpan="3" Grid.Row="6" Foreground="IndianRed"  FontSize="25" HorizontalAlignment="Center" Text="{Binding Warning}"></TextBlock>
     </Grid>
 </mah:MetroWindow>

@@ -51,7 +51,7 @@
             <iconPacks:PackIconMaterial Kind="Login"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="1" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Text="{Binding Login}"></TextBox>
 
 
 
@@ -61,11 +61,12 @@
             <iconPacks:PackIconMaterial Kind="TextboxPassword"></iconPacks:PackIconMaterial>
         </Label>
 
-        <TextBox Grid.Row="2" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="2" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10" Text="{Binding Password}"></TextBox>
 
 
-        <Button Grid.ColumnSpan="3" Grid.Row="3" Margin="10" Width="100">Confirm</Button>
+        <Button Grid.ColumnSpan="3" Grid.Row="3" Margin="10" Width="100" Command="{Binding SendCommand}">Confirm</Button>
 
+        <TextBlock Grid.ColumnSpan="3" Grid.Row="6" Foreground="IndianRed"  FontSize="25" HorizontalAlignment="Center" Text="{Binding Warning}"></TextBlock>
 
 
 

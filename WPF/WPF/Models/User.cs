@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using WPF.Commands;
 
-namespace DAL.Models
+namespace Models
 {
     public class User 
     {
