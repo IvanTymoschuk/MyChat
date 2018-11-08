@@ -8,8 +8,11 @@ using WCF.Classes;
 
 namespace WCF.Interfaces
 {
-    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples", SessionMode = SessionMode.Required,
-                  CallbackContract = typeof(IUserCallback))]
+//    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples", SessionMode = SessionMode.Required,
+//                  CallbackContract = typeof(IUserCallback))]
+
+
+
     public interface IUserCallback
     {
         [OperationContract(IsOneWay = true)]

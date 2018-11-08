@@ -27,6 +27,7 @@ namespace WCF.Interfaces
         void Add_Room(int your_id, int room_id);
         [OperationContract]
         void RemoveFriend(int your_id, int friend_id);
+        [OperationContract]
         void RemoveRoom(int your_id, int room_id);
     }
 }

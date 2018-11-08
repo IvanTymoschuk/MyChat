@@ -1,9 +1,7 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
 using WCF.Classes;
@@ -11,44 +9,91 @@ using WCF.Interfaces;
 
 namespace WCF
 {
-    public class UserService : IUser
+    public class Service : IMessage, IRoom, IUser
     {
         public List<UserDTO> users = null;
         public List<ConfirmCodeDTO> confirmCodes = null;
-        public UserService()
+        public Service()
         {
             users = new List<UserDTO>();
             confirmCodes = new List<ConfirmCodeDTO>();
         }
 
-      
+
+
+
+
+
+
+
+
+
+        //=====================================================
+        //========================IROOM========================
+        //=====================================================
+
+
+
+        public void CreateRoom(RoomDTO room)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SendMessageAllUsersInRoom(RoomDTO room)
+        {
+            foreach (var el in room.users)
+            {
+                el.callback.GetMessage(room.Messages[room.Messages.Count - 1]);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //=====================================================
+        //======================IUSER==========================
+        //=====================================================
+
+
+
 
         public void Add_Friend(int your_id, int friend_id)
         {
             users.FirstOrDefault(x => x.Id == your_id).Friends.Add(users.FirstOrDefault(x => x.Id == friend_id));
         }
 
-     
+
         public void Add_Room(int your_id, int room_id)
         {
-           //users.FirstOrDefault(x=> x.Id == your_id).Rooms.Add()
+            //users.FirstOrDefault(x=> x.Id == your_id).Rooms.Add()
         }
 
         public bool Confirming(int user_id, int Code)
         {
             ConfirmCodeDTO confirmCode = new ConfirmCodeDTO();
-            foreach(var el in confirmCodes)
+            foreach (var el in confirmCodes)
             {
                 using (StreamWriter sw = new StreamWriter("log.txt"))
                 {
                     sw.WriteLine("USER_ID: " + el.user.Id);
                 }
-                if (el.user.Id==user_id && el.code==Code)
+                if (el.user.Id == user_id && el.code == Code)
                 {
-                   
-                    foreach(var _el in users)
+
+                    foreach (var _el in users)
                     {
-                        if(_el.Id==user_id)
+                        if (_el.Id == user_id)
                         {
                             _el.IsConfirmed = true;
                             confirmCode = el;
@@ -60,11 +105,11 @@ namespace WCF
             return false;
         }
 
-     
+
 
         public UserDTO Registration(string Email, string Password, string Login)
         {
-        
+
             bool isExist = false;
             foreach (var el in users)
                 if (Email.ToLower() == el.Email.ToLower() || Login.ToLower() == el.Login.ToLower())
@@ -73,10 +118,10 @@ namespace WCF
             {
                 Random random = new Random();
                 int code = random.Next(1111, 9999);
-                UserDTO u = new UserDTO() { Id=code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null };
+                UserDTO u = new UserDTO() { Id = code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null };
 
                 users.Add(u);
-         
+
                 MailService mail = new MailService();
                 mail.SendCode(u, code);
 
@@ -125,14 +170,14 @@ namespace WCF
 
         public void RemoveRoom(int your_id, int room_id)
         {
-          // users.FirstOrDefault(x => x.Id == your_id).Rooms.Remove(users.FirstOrDefault(x => x.Id == friend_id));
+            // users.FirstOrDefault(x => x.Id == your_id).Rooms.Remove(users.FirstOrDefault(x => x.Id == friend_id));
         }
 
         public bool ResendCode(int user_id)
         {
-           foreach(var el in confirmCodes)
+            foreach (var el in confirmCodes)
             {
-                if (el.user.Id==user_id)
+                if (el.user.Id == user_id)
                 {
                     MailService mail = new MailService();
                     mail.SendCode(el.user, el.code);
@@ -144,9 +189,9 @@ namespace WCF
 
         public UserDTO SignIn(string Email, string password)
         {
-          
-           // users.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
-            foreach(var el in users)
+
+            // users.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
+            foreach (var el in users)
             {
                 if (el.Login.ToLower() == Email.ToLower() && el.Password == password)
                 {
@@ -162,12 +207,49 @@ namespace WCF
 
             foreach (var el in users)
             {
-                if(el.Login.Contains(Name)==true)
+                if (el.Login.Contains(Name) == true)
                 {
                     SearchUsers.Add(el);
                 }
             }
             return SearchUsers;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //=====================================================
+        //========================IMESSAGE=====================
+        //=====================================================
+
+
+
+
+        public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
+
+
+        public void SendMessage(string body, RoomDTO room, UserDTO sender, AttachDTO attach = null)
+        {
+            List<AttachDTO> attaches = null;
+            if (attach != null)
+            {
+                attaches = new List<AttachDTO>();
+                attaches.Add(attach);
+            }
+            MessageDTO message = new MessageDTO() { Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
+
+
+
+        }
+
     }
 }

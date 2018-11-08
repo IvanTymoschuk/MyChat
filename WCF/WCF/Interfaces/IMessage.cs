@@ -8,7 +8,7 @@ using WCF.Classes;
 
 namespace WCF.Interfaces
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IUserCallback))]
     public interface IMessage
     {
         [OperationContract]
