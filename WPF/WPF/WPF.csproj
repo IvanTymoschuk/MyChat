@@ -79,9 +79,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Converters\GetFirstMessageConverter.cs" />
     <Compile Include="Converters\NameConverter.cs" />
     <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="MockModuls\IMockData.cs" />
+    <Compile Include="MockModuls\MessageMocks.cs" />
     <Compile Include="MockModuls\RoomMocks.cs" />
     <Compile Include="MockModuls\UserMocks.cs" />
     <Compile Include="Sign_in.xaml.cs">

@@ -13,6 +13,8 @@
     <Grid>
         <Grid.Resources>
             <Converters:NameConverter x:Key="NameConverter"></Converters:NameConverter>
+            <Converters:GetFirstMessageConverter x:Key="GetFirstMessageConverter"></Converters:GetFirstMessageConverter>
+
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.4*"></ColumnDefinition>
@@ -100,7 +102,27 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="20">
             <Button>Search Rooms</Button>
-            <ListBox ></ListBox>
+            <ListBox ItemsSource="{Binding Rooms}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.4*"></ColumnDefinition>
+
+                            </Grid.ColumnDefinitions>
+                            <Button   Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                                <TextBlock Text="{Binding User.Name,Converter={StaticResource NameConverter}}"></TextBlock>
+                            </Button>
+                            <StackPanel Grid.Column="1">
+                            <TextBlock  Text="{Binding Name}"></TextBlock>
+                            <TextBlock  Text="{Binding Messages,Converter={StaticResource GetFirstMessageConverter}}"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </StackPanel>
 
         <StackPanel Grid.Row="2" Grid.Column="2"  Margin="20"  > 

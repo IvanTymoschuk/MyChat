@@ -28,7 +28,7 @@ namespace WPF
         public MainWindow()
         {
             InitializeComponent();
-            Mvm = new MainViewModel(new UserMocks());
+            Mvm = new MainViewModel(new UserMocks(),new MessageMocks(),new RoomMocks());
             this.DataContext = Mvm;
 
             

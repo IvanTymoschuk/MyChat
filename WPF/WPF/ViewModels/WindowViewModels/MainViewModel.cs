@@ -17,6 +17,12 @@ namespace WPF.ViewModels
     {
         public ObservableCollection<User> Users { get; set; }
 
+        public ObservableCollection<Message> Messages { get; set; }
+
+        public ObservableCollection<Room> Rooms  { get; set; }
+
+
+
         private User _selectedUser;
 
         public User SelectedUser
@@ -55,14 +61,26 @@ namespace WPF.ViewModels
 
         public string Message { get; set; }
 
-        public MainViewModel(IMockData<User> mock)
+        public MainViewModel(IMockData<User> usermock,IMockData<Message>messagemock,IMockData<Room>roommock)
         {
             Users = new ObservableCollection<User>();
-            foreach(var item in mock.GetMock())
+            foreach(var item in usermock.GetMock())
             {
                 Users.Add(item);
             }
-            ActiveUsers = Users.Count;
+
+            Messages = new ObservableCollection<Message>();
+            foreach (var item in messagemock.GetMock())
+            {
+                Messages.Add(item);
+            }
+
+            Rooms = new ObservableCollection<Room>();
+            foreach (var item in roommock.GetMock())
+            {
+                Rooms.Add(item);
+            }
+
         }
         private RelayCommand sendCommand;
         public RelayCommand SendCommand
