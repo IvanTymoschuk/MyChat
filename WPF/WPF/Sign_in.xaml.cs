@@ -32,7 +32,10 @@ namespace WPF
         }
         private void BtnBack_OnClick(object sender, RoutedEventArgs e)
         {
+            StartWindow window = new StartWindow();
             this.Close();
+
+            window.Show();
         }
     }
 }

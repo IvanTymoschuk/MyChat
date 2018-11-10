@@ -30,13 +30,18 @@ namespace WPF
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
             Sign_in window=new Sign_in();
+            this.Close();
+            Application.Current.MainWindow = window;
             window.ShowDialog();
+            
         }
 
 
         private void BtnUp_OnClick(object sender, RoutedEventArgs e)
         {
             Sign_up window = new Sign_up();
+            this.Close();
+            Application.Current.MainWindow = window;
             window.ShowDialog();
         }
     }

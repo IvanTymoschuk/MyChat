@@ -22,9 +22,22 @@ namespace WPF.ViewModels
         public ObservableCollection<Room> Rooms  { get; set; }
 
 
+        public Room SelectedRoom { get; set; }
+
+
+
+        private string message;
+        public string MessageBody
+        {
+            get { return message;}
+            set
+            {
+                message = value;
+                RaisePropertyChanged();
+            }
+        }
 
         private User _selectedUser;
-
         public User SelectedUser
         {
             get
@@ -59,7 +72,7 @@ namespace WPF.ViewModels
        
 
 
-        public string Message { get; set; }
+
 
         public MainViewModel(IMockData<User> usermock,IMockData<Message>messagemock,IMockData<Room>roommock)
         {
@@ -92,11 +105,27 @@ namespace WPF.ViewModels
 
                (sendCommand = new RelayCommand(obj =>
                {
-                   MessageBox.Show((obj as User).Name);
+                  
+                      Users[0].Rooms[0].Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
+                  
                }));
             }
         }
 
+        private RelayCommand findUser;
+        public RelayCommand FindUser
+        {
+            get
+            {
+
+                return findUser ??
+
+                       (findUser = new RelayCommand(obj =>
+                       {
+                           MessageBox.Show("ldldl");
+                       }));
+            }
+        }
 
     }
 }

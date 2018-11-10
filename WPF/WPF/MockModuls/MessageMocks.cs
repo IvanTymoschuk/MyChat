@@ -12,7 +12,7 @@ namespace WPF.MockModuls
         public IEnumerable<Message> GetMock()
         {
             List<Message> message = new List<Message>();
-            message.Add(new Message(){Body="Hello" ,Sender=new User() { Name="Loool Mas"},DateTimeSended=DateTime.Now });
+            message.Add(new Message(){Body="Hellgffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffhdsfsdfdsdfsdfsdfsdfsdfsfdsdfsdfdfso" ,Sender=new User() { Name="Loool Mas"},DateTimeSended=DateTime.Now });
             message.Add(new Message() { Body = "Pidor", Sender = new User() { Name = "Vanya Dolbon" }, DateTimeSended = DateTime.Now });
 
             return message;

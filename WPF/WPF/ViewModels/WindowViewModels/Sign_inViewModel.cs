@@ -1,7 +1,9 @@
 ﻿using Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -44,6 +46,21 @@ namespace WPF.ViewModels.WindowViewModels
             }
         }
 
+        public Sign_inViewModel()
+        {
+            
+            using (StreamReader file =
+                new System.IO.StreamReader(@"CurrentUser.json", true))
+            {
+                User user = JsonConvert.DeserializeObject<User>(file.ReadToEnd());
+                login = user.Login;
+                password = user.Password;
+
+            }
+            
+           // SendCommand.Execute(new object());
+        }
+
 
         private RelayCommand sendCommand;
         public RelayCommand SendCommand
@@ -66,8 +83,25 @@ namespace WPF.ViewModels.WindowViewModels
                        Warning = "password is empty";
                        return;
                    }
-                 
-                   MessageBox.Show(login);
+
+                   if (File.Exists("CurrentUser.json"))
+                   {
+                       File.Delete("CurrentUser.json");
+                   }
+
+                   using (System.IO.StreamWriter file =
+                       new System.IO.StreamWriter("CurrentUser.json", true))
+                   { 
+                       file.WriteLine(JsonConvert.SerializeObject(new User() { Login = login, Password = password }));
+                   }
+
+
+                   MainWindow sign = new MainWindow() { DataContext = new MainViewModel(new UserMocks(), new MessageMocks(), new RoomMocks()) };
+                   sign.Show();
+                   App.Current.MainWindow.Close();
+                   App.Current.MainWindow = sign;
+
+
                }));
             }
         }

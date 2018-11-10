@@ -54,17 +54,47 @@
                 <ColumnDefinition Width="50"></ColumnDefinition>
 
             </Grid.ColumnDefinitions>
-            <ListBox Grid.ColumnSpan="3">
-
-
-
-
+            <ListBox ItemsSource="{Binding Messages}" Grid.ColumnSpan="3">
+                <ListBox.Resources>
+                    <Style TargetType="ListBoxItem">
+                        <Style.Resources>
+                            <!-- SelectedItem with focus -->
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}"
+                                             Color="Transparent" />
+                            <!-- SelectedItem without focus -->
+                            <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                                             Color="Transparent" />
+                            <!-- SelectedItem text foreground -->
+                            <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}"
+                                             Color="Black" />
+                        </Style.Resources>
+                        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+                    </Style>
+                </ListBox.Resources>
+                <ListBox.ItemTemplate >
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="3" MaxWidth="370" HorizontalAlignment="Left">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                            <Button VerticalAlignment="Top"  Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                                <TextBlock Text="{Binding Sender.Name,Converter={StaticResource NameConverter}}"></TextBlock>
+                            </Button>
+                                <TextBlock FontSize="16" VerticalAlignment="Center" Margin="20,0" Grid.Column="1" Text="{Binding Body}" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock Grid.Column="2" Margin="0,10,10,10" Foreground="DarkGray" Text="{Binding DateTimeSended, StringFormat={}{0:hh:mm}}" ></TextBlock>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
 
 
-            <TextBox Text="{Binding Message}" Grid.Row="1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Center" FontSize="16"></TextBox>
+            <TextBox Text="{Binding MessageBody}" Grid.Row="1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Center" FontSize="16"></TextBox>
         
-            <Button Grid.Column="2" Grid.Row="1" Click="Button_Click">
+            <Button Grid.Column="2" Grid.Row="1" Command="{Binding SendCommand}">
                 <iconPacks:PackIconMaterial Kind="Send"></iconPacks:PackIconMaterial>
             </Button>
             <Button  Grid.Column="1" Grid.Row="1">
@@ -109,7 +139,7 @@
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="20">
             <Button>Search Rooms</Button>
-            <ListBox  ItemsSource="{Binding Rooms}">
+            <ListBox  ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -120,7 +150,7 @@
 
                             </Grid.ColumnDefinitions>
 
-                            <Button   Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                            <Button  Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
                                 <TextBlock Text="{Binding User.Name,Converter={StaticResource NameConverter}}"></TextBlock>
                             </Button>
 

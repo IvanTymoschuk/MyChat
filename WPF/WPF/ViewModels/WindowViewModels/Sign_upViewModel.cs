@@ -105,7 +105,14 @@ namespace WPF.ViewModels.WindowViewModels
                        Warning = "email is empty";
                        return;
                    }
-                   MessageBox.Show(email);
+
+                   MessageBox.Show(login + " registred");
+                   Sign_in sign=new Sign_in(){DataContext=new Sign_inViewModel()};
+                   sign.Show();
+                   App.Current.MainWindow.Close();
+                   App.Current.MainWindow = sign;
+                   
+                   
                }));
             }
         }

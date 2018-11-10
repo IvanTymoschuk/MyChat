@@ -12,7 +12,7 @@ namespace WPF.MockModuls
         public IEnumerable<Room> GetMock()
         {
             List<Room> rooms = new List<Room>();
-            rooms.Add(new Room() { Name = "Lox Victor" ,Messages=new MessageMocks().GetMock().ToList(),User=new UserMocks().GetMock().ToList()[0]});
+            rooms.Add(new Room() { Name = "Lox Victor" ,Messages=new MessageMocks().GetMock().ToList()});
             return rooms;
         }
     }
