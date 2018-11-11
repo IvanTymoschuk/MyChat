@@ -8,11 +8,11 @@ using WCF.Classes;
 
 namespace WCF.Interfaces
 {
-    [ServiceContract]
+    [ServiceContract(CallbackContract = typeof(IUserCallback))]
     public interface IUser
     {
         [OperationContract]
-        UserDTO SignIn(string Email, string password);
+        UserDTO SignIn(string EmailOrLogin = "Admin1", string password="Admin1");
         [OperationContract]
         UserDTO Registration(string Email, string Password, string Login);
         [OperationContract]

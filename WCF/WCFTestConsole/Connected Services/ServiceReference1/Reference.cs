@@ -265,99 +265,6 @@ namespace WCFTestConsole.ServiceReference1 {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AttachDTO", Namespace="http://schemas.datacontract.org/2004/07/WCF.Classes")]
-    [System.SerializableAttribute()]
-    public partial class AttachDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string ContentField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WCFTestConsole.ServiceReference1.MessageDTO MessageField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TypeField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Content {
-            get {
-                return this.ContentField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
-                    this.ContentField = value;
-                    this.RaisePropertyChanged("Content");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WCFTestConsole.ServiceReference1.MessageDTO Message {
-            get {
-                return this.MessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
-                    this.MessageField = value;
-                    this.RaisePropertyChanged("Message");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Type {
-            get {
-                return this.TypeField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
-                    this.TypeField = value;
-                    this.RaisePropertyChanged("Type");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="MessageDTO", Namespace="http://schemas.datacontract.org/2004/07/WCF.Classes")]
     [System.SerializableAttribute()]
     public partial class MessageDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -481,15 +388,108 @@ namespace WCFTestConsole.ServiceReference1 {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="AttachDTO", Namespace="http://schemas.datacontract.org/2004/07/WCF.Classes")]
+    [System.SerializableAttribute()]
+    public partial class AttachDTO : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string ContentField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WCFTestConsole.ServiceReference1.MessageDTO MessageField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Content {
+            get {
+                return this.ContentField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ContentField, value) != true)) {
+                    this.ContentField = value;
+                    this.RaisePropertyChanged("Content");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WCFTestConsole.ServiceReference1.MessageDTO Message {
+            get {
+                return this.MessageField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.MessageField, value) != true)) {
+                    this.MessageField = value;
+                    this.RaisePropertyChanged("Message");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TypeField, value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IUser")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IUser", CallbackContract=typeof(WCFTestConsole.ServiceReference1.IUserCallback))]
     public interface IUser {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/SignIn", ReplyAction="http://tempuri.org/IUser/SignInResponse")]
-        WCFTestConsole.ServiceReference1.UserDTO SignIn(string Email, string password);
+        WCFTestConsole.ServiceReference1.UserDTO SignIn(string EmailOrLogin, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/SignIn", ReplyAction="http://tempuri.org/IUser/SignInResponse")]
-        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> SignInAsync(string Email, string password);
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> SignInAsync(string EmailOrLogin, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Registration", ReplyAction="http://tempuri.org/IUser/RegistrationResponse")]
         WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Password, string Login);
@@ -541,38 +541,46 @@ namespace WCFTestConsole.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IUserCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IUser/GetMessage")]
+        void GetMessage(WCFTestConsole.ServiceReference1.MessageDTO msg);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IUserChannel : WCFTestConsole.ServiceReference1.IUser, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class UserClient : System.ServiceModel.ClientBase<WCFTestConsole.ServiceReference1.IUser>, WCFTestConsole.ServiceReference1.IUser {
+    public partial class UserClient : System.ServiceModel.DuplexClientBase<WCFTestConsole.ServiceReference1.IUser>, WCFTestConsole.ServiceReference1.IUser {
         
-        public UserClient() {
+        public UserClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public UserClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public UserClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public UserClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public UserClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public UserClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public UserClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public UserClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public UserClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
-        public WCFTestConsole.ServiceReference1.UserDTO SignIn(string Email, string password) {
-            return base.Channel.SignIn(Email, password);
+        public WCFTestConsole.ServiceReference1.UserDTO SignIn(string EmailOrLogin, string password) {
+            return base.Channel.SignIn(EmailOrLogin, password);
         }
         
-        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> SignInAsync(string Email, string password) {
-            return base.Channel.SignInAsync(Email, password);
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> SignInAsync(string EmailOrLogin, string password) {
+            return base.Channel.SignInAsync(EmailOrLogin, password);
         }
         
         public WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Password, string Login) {
@@ -696,7 +704,7 @@ namespace WCFTestConsole.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IRoom")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IRoom", CallbackContract=typeof(WCFTestConsole.ServiceReference1.IRoomCallback))]
     public interface IRoom {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/CreateRoom", ReplyAction="http://tempuri.org/IRoom/CreateRoomResponse")]
@@ -713,30 +721,38 @@ namespace WCFTestConsole.ServiceReference1 {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IRoomCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IRoom/GetMessage")]
+        void GetMessage(WCFTestConsole.ServiceReference1.MessageDTO msg);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface IRoomChannel : WCFTestConsole.ServiceReference1.IRoom, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class RoomClient : System.ServiceModel.ClientBase<WCFTestConsole.ServiceReference1.IRoom>, WCFTestConsole.ServiceReference1.IRoom {
+    public partial class RoomClient : System.ServiceModel.DuplexClientBase<WCFTestConsole.ServiceReference1.IRoom>, WCFTestConsole.ServiceReference1.IRoom {
         
-        public RoomClient() {
+        public RoomClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public RoomClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public RoomClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public RoomClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public RoomClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public RoomClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public RoomClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public RoomClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public RoomClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
         public void CreateRoom(WCFTestConsole.ServiceReference1.RoomDTO room) {

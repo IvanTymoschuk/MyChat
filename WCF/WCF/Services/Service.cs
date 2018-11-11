@@ -13,9 +13,11 @@ namespace WCF
 {
     public class Service : IMessage, IRoom, IUser
     {
-        public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
-        public List<UserDTO> users = null;
-        public List<ConfirmCodeDTO> confirmCodes = null;
+        //public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
+        static   public List<UserDTO> users = null;
+        static public List<ConfirmCodeDTO> confirmCodes = null;
+        static public List<MessageDTO> messages = null;
+        static public List<RoomDTO> rooms = null;
         //private static string Path = @"loh.txt";
 
 
@@ -23,7 +25,9 @@ namespace WCF
         {
             users = new List<UserDTO>();
             confirmCodes = new List<ConfirmCodeDTO>();
-            userCallbacks.Add(OperationContext.Current.GetCallbackChannel<IUserCallback>());
+          //  userCallbacks.Add(OperationContext.Current.GetCallbackChannel<IUserCallback>());
+            messages = new List<MessageDTO>();
+            rooms = new List<RoomDTO>();
             Logger.Log("User Added");
         }
 
@@ -43,7 +47,7 @@ namespace WCF
 
         public void CreateRoom(RoomDTO room)
         {
-            throw new NotImplementedException();
+            rooms.Add(room);
         }
 
         public void SendMessageAllUsersInRoom(RoomDTO room)
@@ -83,7 +87,7 @@ namespace WCF
 
         public void Add_Room(int your_id, int room_id)
         {
-            //users.FirstOrDefault(x=> x.Id == your_id).Rooms.Add()
+            rooms.FirstOrDefault(x => x.Id == room_id).users.Add(users.FirstOrDefault(x => x.Id == your_id));
         }
 
         public bool Confirming(int user_id, int Code)
@@ -125,7 +129,7 @@ namespace WCF
             {
                 Random random = new Random();
                 int code = random.Next(1111, 9999);
-                UserDTO u = new UserDTO() { Id = code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null };
+                UserDTO u = new UserDTO() { Id = code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null, callback= OperationContext.Current.GetCallbackChannel<IUserCallback>() };
 
                 users.Add(u);
 
@@ -194,13 +198,14 @@ namespace WCF
             return false;
         }
 
-        public UserDTO SignIn(string Email, string password)
+        public UserDTO SignIn(string EmailOrLogin="Admin1", string password="Admin1")
         {
-
-            // users.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
+            List<UserDTO> users = new List<UserDTO>();
+             //users1.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
+            //users1.Add(new UserDTO() { Email = "istep.andriy12@gmail.com", Friends = null, Id = 12, IsConfirmed = true, Login = "Admin1", Password = "Ad1min1", Rooms = null });
             foreach (var el in users)
             {
-                if (el.Login.ToLower() == Email.ToLower() && el.Password == password)
+                if (el.Login == EmailOrLogin || el.Login== EmailOrLogin && el.Password == password)
                 {
                     return el;
                 }
@@ -255,7 +260,7 @@ namespace WCF
                 attaches.Add(attach);
             }
             MessageDTO message = new MessageDTO() { Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
-
+            SendMessageAllUsersInRoom(room);
              
 
         }

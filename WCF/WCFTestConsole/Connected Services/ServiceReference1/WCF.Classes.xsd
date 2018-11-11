@@ -34,15 +34,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RoomDTO" nillable="true" type="tns:RoomDTO" />
-  <xs:complexType name="AttachDTO">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Message" nillable="true" type="tns:MessageDTO" />
-      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="AttachDTO" nillable="true" type="tns:AttachDTO" />
   <xs:complexType name="MessageDTO">
     <xs:sequence>
       <xs:element minOccurs="0" name="Attaches" nillable="true" type="tns:ArrayOfAttachDTO" />
@@ -60,4 +51,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfAttachDTO" nillable="true" type="tns:ArrayOfAttachDTO" />
+  <xs:complexType name="AttachDTO">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="tns:MessageDTO" />
+      <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AttachDTO" nillable="true" type="tns:AttachDTO" />
 </xs:schema>

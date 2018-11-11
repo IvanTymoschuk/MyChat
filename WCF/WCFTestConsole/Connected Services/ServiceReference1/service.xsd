@@ -4,7 +4,7 @@
   <xs:element name="SignIn">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="EmailOrLogin" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="password" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
@@ -127,26 +127,26 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetMessage">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="msg" nillable="true" type="q4:MessageDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="SendMessage">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="body" nillable="true" type="xs:string" />
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="room" nillable="true" type="q4:RoomDTO" />
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="sender" nillable="true" type="q5:UserDTO" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="attach" nillable="true" type="q6:AttachDTO" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="room" nillable="true" type="q5:RoomDTO" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="sender" nillable="true" type="q6:UserDTO" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="attach" nillable="true" type="q7:AttachDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="SendMessageResponse">
     <xs:complexType>
       <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetMessage">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="msg" nillable="true" type="q7:MessageDTO" />
-      </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="CreateRoom">

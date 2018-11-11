@@ -8,8 +8,7 @@ using WCF.Classes;
 
 namespace WCF.Interfaces
 {
-//    [ServiceContract(Namespace = "http://Microsoft.ServiceModel.Samples", SessionMode = SessionMode.Required,
-//                  CallbackContract = typeof(IUserCallback))]
+    [ServiceContract]
 
 
 
