@@ -105,8 +105,8 @@ namespace WPF.ViewModels
 
                (sendCommand = new RelayCommand(obj =>
                {
-                  
-                      Users[0].Rooms[0].Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
+
+                   Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
                   
                }));
             }
@@ -123,6 +123,25 @@ namespace WPF.ViewModels
                        (findUser = new RelayCommand(obj =>
                        {
                            MessageBox.Show("ldldl");
+                       }));
+            }
+        }
+
+        private RelayCommand usersignout;
+        public RelayCommand UserSignOut
+        {
+            get
+            {
+
+                return usersignout ??
+
+                       (usersignout = new RelayCommand(obj =>
+                       {
+
+                           StartWindow sign = new StartWindow();
+                           sign.Show();
+                           App.Current.MainWindow.Close();
+                           App.Current.MainWindow = sign;
                        }));
             }
         }

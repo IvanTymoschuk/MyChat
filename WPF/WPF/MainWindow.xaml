@@ -180,8 +180,8 @@
             </ListBox>
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.Column="2"  Margin="20"  > 
-            <Button HorizontalAlignment="Right" Height="60">Sign Out</Button>
+        <StackPanel Grid.Row="2" Grid.Column="2"  Margin="20"  >
+            <Button HorizontalAlignment="Right" Height="60" Command="{Binding UserSignOut}">Sign Out</Button>
         </StackPanel>       
 
 
