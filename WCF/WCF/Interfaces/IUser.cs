@@ -12,7 +12,7 @@ namespace WCF.Interfaces
     public interface IUser
     {
         [OperationContract]
-        UserDTO SignIn(string EmailOrLogin = "Admin1", string password="Admin1");
+        UserDTO SignIn(string EmailOrLogin, string password);
         [OperationContract]
         UserDTO Registration(string Email, string Password, string Login);
         [OperationContract]
