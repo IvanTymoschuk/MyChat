@@ -15,7 +15,7 @@ namespace WPF.ViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        public ObservableCollection<User> Users { get; set; }
+        public ObservableCollection<User> Friends { get; set; }
 
         public ObservableCollection<Message> Messages { get; set; }
 
@@ -74,22 +74,18 @@ namespace WPF.ViewModels
 
 
 
-        public MainViewModel(IMockData<User> usermock,IMockData<Message>messagemock,IMockData<Room>roommock)
+        public MainViewModel(User user)
         {
-            Users = new ObservableCollection<User>();
-            foreach(var item in usermock.GetMock())
-            {
-                Users.Add(item);
-            }
 
-            Messages = new ObservableCollection<Message>();
-            foreach (var item in messagemock.GetMock())
+
+            Friends = new ObservableCollection<User>();
+            foreach (var item in user.Friends)
             {
-                Messages.Add(item);
+              Friends.Add(item);
             }
 
             Rooms = new ObservableCollection<Room>();
-            foreach (var item in roommock.GetMock())
+            foreach (var item in user.Rooms)
             {
                 Rooms.Add(item);
             }
@@ -106,7 +102,7 @@ namespace WPF.ViewModels
                (sendCommand = new RelayCommand(obj =>
                {
 
-                   Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
+                   //Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
                   
                }));
             }

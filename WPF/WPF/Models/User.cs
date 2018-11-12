@@ -32,7 +32,7 @@ namespace Models
 
         public string Email { get; set; }
 
-    
+        
 
     }
 }

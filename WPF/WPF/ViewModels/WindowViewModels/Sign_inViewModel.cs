@@ -98,7 +98,7 @@ namespace WPF.ViewModels.WindowViewModels
                    }
 
 
-                   MainWindow sign = new MainWindow() { DataContext = new MainViewModel(new UserMocks(), new MessageMocks(), new RoomMocks()) };
+                   MainWindow sign = new MainWindow() { DataContext = new MainViewModel(new UserMocks().GetMock().ToList()[0]) };
                    sign.Show();
                    App.Current.MainWindow.Close();
                    App.Current.MainWindow = sign;

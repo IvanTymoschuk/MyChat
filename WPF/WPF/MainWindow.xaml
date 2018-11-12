@@ -107,7 +107,7 @@
 
         <StackPanel Grid.Row="1" Margin="20">
             <Button>Search friends</Button>
-            <ListBox ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" >
+            <ListBox ItemsSource="{Binding Friends}" SelectedItem="{Binding SelectedUser}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Grid>
@@ -119,7 +119,7 @@
 
 
                             </Grid.ColumnDefinitions>
-                                <Button   Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                                <Button  Tag="{Binding Id}" Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
                                 <TextBlock Text="{Binding Name,Converter={StaticResource NameConverter}}"></TextBlock>
                             </Button>
 
