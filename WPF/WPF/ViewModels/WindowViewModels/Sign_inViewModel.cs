@@ -48,16 +48,17 @@ namespace WPF.ViewModels.WindowViewModels
 
         public Sign_inViewModel()
         {
-            
-            using (StreamReader file =
-                new System.IO.StreamReader(@"CurrentUser.json", true))
+            if (File.Exists("CurrentUser.json"))
             {
-                User user = JsonConvert.DeserializeObject<User>(file.ReadToEnd());
-                login = user.Login;
-                password = user.Password;
+                using (StreamReader file =
+                new System.IO.StreamReader(@"CurrentUser.json", true))
+                {
+                    User user = JsonConvert.DeserializeObject<User>(file.ReadToEnd());
+                    login = user.Login;
+                    password = user.Password;
 
+                }
             }
-            
            // SendCommand.Execute(new object());
         }
 
@@ -87,11 +88,12 @@ namespace WPF.ViewModels.WindowViewModels
                    if (File.Exists("CurrentUser.json"))
                    {
                        File.Delete("CurrentUser.json");
+                      
                    }
 
                    using (System.IO.StreamWriter file =
-                       new System.IO.StreamWriter("CurrentUser.json", true))
-                   { 
+                      new System.IO.StreamWriter("CurrentUser.json", true))
+                   {
                        file.WriteLine(JsonConvert.SerializeObject(new User() { Login = login, Password = password }));
                    }
 
