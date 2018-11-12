@@ -53,6 +53,7 @@
     <Compile Include="Classes\MessageDTO.cs" />
     <Compile Include="Classes\RoomDTO.cs" />
     <Compile Include="Classes\UserDTO.cs" />
+    <Compile Include="Conveter\Converter.cs" />
     <Compile Include="Interfaces\IMail.cs" />
     <Compile Include="Interfaces\IMessage.cs" />
     <Compile Include="Interfaces\IRoom.cs" />
