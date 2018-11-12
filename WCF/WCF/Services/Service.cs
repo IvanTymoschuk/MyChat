@@ -8,26 +8,22 @@ using System.Text;
 using System.Threading.Tasks;
 using WCF.Classes;
 using WCF.Interfaces;
+using DAL;
+using AutoMapper;
+using DAL.Models;
 
 namespace WCF
 {
     public class Service : IMessage, IRoom, IUser
     {
-        //public static List<IUserCallback> userCallbacks = new List<IUserCallback>();
-        static   public List<UserDTO> users = null;
         static public List<ConfirmCodeDTO> confirmCodes = null;
-        static public List<MessageDTO> messages = null;
-        static public List<RoomDTO> rooms = null;
-        //private static string Path = @"loh.txt";
+        List<UserDTO> users;
 
-
+        DBase db;
         public Service()
         {
-            users = new List<UserDTO>();
+            db = new DBase();
             confirmCodes = new List<ConfirmCodeDTO>();
-          //  userCallbacks.Add(OperationContext.Current.GetCallbackChannel<IUserCallback>());
-            messages = new List<MessageDTO>();
-            rooms = new List<RoomDTO>();
             Logger.Log("User Added");
         }
 
@@ -47,7 +43,10 @@ namespace WCF
 
         public void CreateRoom(RoomDTO room)
         {
-            rooms.Add(room);
+            Mapper.Initialize(cfg => cfg.CreateMap<RoomDTO, Room>());
+
+            Room r = Mapper.Map<RoomDTO, Room>(room);
+            db.Rooms.Add(r);
         }
 
         public void SendMessageAllUsersInRoom(RoomDTO room)
@@ -81,13 +80,15 @@ namespace WCF
 
         public void Add_Friend(int your_id, int friend_id)
         {
-            users.FirstOrDefault(x => x.Id == your_id).Friends.Add(users.FirstOrDefault(x => x.Id == friend_id));
+            db.Users.FirstOrDefault(x => x.Id == your_id).Friends.Add(db.Users.FirstOrDefault(x => x.Id == friend_id));
+            db.SaveChanges();
         }
 
 
         public void Add_Room(int your_id, int room_id)
         {
-            rooms.FirstOrDefault(x => x.Id == room_id).users.Add(users.FirstOrDefault(x => x.Id == your_id));
+            db.Rooms.FirstOrDefault(x => x.Id == room_id).users.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
+            db.SaveChanges();
         }
 
         public bool Confirming(int user_id, int Code)
@@ -102,12 +103,13 @@ namespace WCF
                 if (el.user.Id == user_id && el.code == Code)
                 {
 
-                    foreach (var _el in users)
+                    foreach (var _el in db.Users)
                     {
                         if (_el.Id == user_id)
                         {
                             _el.IsConfirmed = true;
                             confirmCode = el;
+                            db.SaveChanges();
                             return true;
                         }
                     }
@@ -120,9 +122,9 @@ namespace WCF
 
         public UserDTO Registration(string Email, string Password, string Login)
         {
-
+           
             bool isExist = false;
-            foreach (var el in users)
+            foreach (var el in db.Users)
                 if (Email.ToLower() == el.Email.ToLower() || Login.ToLower() == el.Login.ToLower())
                     isExist = true;
             if (isExist == false)
@@ -130,8 +132,12 @@ namespace WCF
                 Random random = new Random();
                 int code = random.Next(1111, 9999);
                 UserDTO u = new UserDTO() { Id = code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null, callback= OperationContext.Current.GetCallbackChannel<IUserCallback>() };
+                Mapper.Reset();
+                Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
 
-                users.Add(u);
+                User user = Mapper.Map<UserDTO, User>(u);
+
+                //users.Add(u);
 
                 MailService mail = new MailService();
                 mail.SendCode(u, code);
@@ -167,6 +173,10 @@ namespace WCF
 
                 confirmCodes.Add(new ConfirmCodeDTO() { Id = code, code = code, user = u });
 
+              
+                db.Users.Add(user);
+                db.SaveChanges();
+
                 return u;
 
             }
@@ -176,12 +186,14 @@ namespace WCF
 
         public void RemoveFriend(int your_id, int friend_id)
         {
-            users.FirstOrDefault(x => x.Id == your_id).Friends.Remove(users.FirstOrDefault(x => x.Id == friend_id));
+
+            db.Users.FirstOrDefault(x => x.Id == your_id).Friends.Remove(db.Users.FirstOrDefault(x => x.Id == friend_id));
+            db.SaveChanges();
         }
 
         public void RemoveRoom(int your_id, int room_id)
         {
-            // users.FirstOrDefault(x => x.Id == your_id).Rooms.Remove(users.FirstOrDefault(x => x.Id == friend_id));
+             db.Users.FirstOrDefault(x => x.Id == your_id).Rooms.Remove(db.Rooms.FirstOrDefault(x => x.Id == room_id));
         }
 
         public bool ResendCode(int user_id)
@@ -198,16 +210,20 @@ namespace WCF
             return false;
         }
 
-        public UserDTO SignIn(string EmailOrLogin="Admin1", string password="Admin1")
+        public UserDTO SignIn(string EmailOrLogin, string password)
         {
-            List<UserDTO> users = new List<UserDTO>();
-             //users1.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
+            Mapper.Reset();
+            //users1.Add(new UserDTO() { Email = "istep.andriy@gmail.com", Friends = null, Id = 1, IsConfirmed = true, Login = "Admin", Password = "Admin", Rooms = null });
             //users1.Add(new UserDTO() { Email = "istep.andriy12@gmail.com", Friends = null, Id = 12, IsConfirmed = true, Login = "Admin1", Password = "Ad1min1", Rooms = null });
-            foreach (var el in users)
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
+
+          
+            foreach (var el in db.Users)
             {
                 if (el.Login == EmailOrLogin || el.Login== EmailOrLogin && el.Password == password)
                 {
-                    return el;
+                    UserDTO user = Mapper.Map<User, UserDTO> (el);
+                    return user;
                 }
             }
             return null;
@@ -215,13 +231,16 @@ namespace WCF
 
         IEnumerable<UserDTO> IUser.getSeachPeople(string Name)
         {
-            List<UserDTO> SearchUsers = new List<UserDTO>();
 
-            foreach (var el in users)
+            List<UserDTO> SearchUsers = new List<UserDTO>();
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
+            foreach (var el in db.Users)
             {
                 if (el.Login.Contains(Name) == true)
                 {
-                    SearchUsers.Add(el);
+                    UserDTO user = Mapper.Map<User, UserDTO>(el);
+                    SearchUsers.Add(user);
                 }
             }
             return SearchUsers;
@@ -261,8 +280,10 @@ namespace WCF
             }
             MessageDTO message = new MessageDTO() { Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
             SendMessageAllUsersInRoom(room);
-             
-
+            Mapper.Initialize(cfg => cfg.CreateMap<MessageDTO, Message>());
+            Message msg = Mapper.Map<MessageDTO, Message>(message);
+            db.Messages.Add(msg);
+            db.SaveChanges();
         }
 
     }
