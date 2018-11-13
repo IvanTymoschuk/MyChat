@@ -1,17 +1,24 @@
-﻿using Models;
+﻿using AutoMapper;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WPF.Commands;
 using WPF.MockModuls;
+using WPF.Service;
 
 namespace WPF.ViewModels.WindowViewModels
 {
+
+
+
+
     public class Sign_upViewModel: ViewModelBase
     {
 
@@ -105,6 +112,14 @@ namespace WPF.ViewModels.WindowViewModels
                        Warning = "email is empty";
                        return;
                    }
+
+
+
+                   UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
+                   Mapper.Reset();
+                   Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+                   User user = Mapper.Map<UserDTO, User>(userClient.Registration(email,password,login));
+
 
                    MessageBox.Show(login + " registred");
                    Sign_in sign=new Sign_in(){DataContext=new Sign_inViewModel()};

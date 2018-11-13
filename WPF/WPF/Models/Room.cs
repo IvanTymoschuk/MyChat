@@ -17,7 +17,7 @@ namespace Models
 
         public string Name { get; set; }
 
-        public User User { get; set; }
+       
 
         public List<Message> Messages { get; set; }
 
