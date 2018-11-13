@@ -12,6 +12,7 @@ namespace Models
         public Room()
         {
             Messages = new List<Message>();
+            Users = new List<User>();
         }
         public int Id { get; set; }
 
@@ -20,7 +21,7 @@ namespace Models
        
 
         public List<Message> Messages { get; set; }
-
+        public ICollection<User> Users { get; set; }
         public bool IsPublish { get; set; }
 
 

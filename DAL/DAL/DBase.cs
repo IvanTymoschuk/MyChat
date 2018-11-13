@@ -15,7 +15,7 @@ namespace DAL
         // If you wish to target a different database and/or database provider, modify the 'DBase' 
         // connection string in the application configuration file.
         public DBase()
-            : base("name=DBase")
+            : base("DBase")
         {
             Database.SetInitializer(new MyInit());
         }

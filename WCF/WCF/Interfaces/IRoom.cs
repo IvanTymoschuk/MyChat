@@ -15,5 +15,11 @@ namespace WCF.Interfaces
         void CreateRoom(RoomDTO room);
         [OperationContract]
         void SendMessageAllUsersInRoom(RoomDTO room);
+        [OperationContract]
+        void ExitFromRoom(int your_id, int room_id);
+        [OperationContract]
+        void JoinInRoom(int your_id, int room_id);
+        [OperationContract]
+        IEnumerable<RoomDTO> GetRooms(int your_id);
     }
 }

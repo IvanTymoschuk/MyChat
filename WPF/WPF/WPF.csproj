@@ -175,6 +175,9 @@
     <None Include="Connected Services\Service\WCF.Classes.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\Service\WPF.Service.RoomDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\Service\WPF.Service.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

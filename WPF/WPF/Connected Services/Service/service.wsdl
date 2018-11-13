@@ -287,7 +287,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="User_getSeachPeople_Input_policy">
+  <wsp:Policy wsu:Id="User_getSearchPeople_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -310,7 +310,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="User_getSeachPeople_output_policy">
+  <wsp:Policy wsu:Id="User_getSearchPeople_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -379,52 +379,6 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="User_Add_Room_Input_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
-  <wsp:Policy wsu:Id="User_Add_Room_output_policy">
-    <wsp:ExactlyOne>
-      <wsp:All>
-        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
-          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
-          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
-          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
-        </sp:SignedParts>
-        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
-          <sp:Body />
-        </sp:EncryptedParts>
-      </wsp:All>
-    </wsp:ExactlyOne>
-  </wsp:Policy>
   <wsp:Policy wsu:Id="User_RemoveFriend_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -471,7 +425,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="User_RemoveRoom_Input_policy">
+  <wsp:Policy wsu:Id="User_GetUserId_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -494,7 +448,53 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="User_RemoveRoom_output_policy">
+  <wsp:Policy wsu:Id="User_GetUserId_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="User_GetFriends_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="User_GetFriends_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -907,6 +907,144 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_ExitFromRoom_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_ExitFromRoom_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_JoinInRoom_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_JoinInRoom_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_GetRooms_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_GetRooms_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="Room_GetMessage_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -961,11 +1099,11 @@
   <wsdl:message name="IUser_ResendCode_OutputMessage">
     <wsdl:part name="parameters" element="tns:ResendCodeResponse" />
   </wsdl:message>
-  <wsdl:message name="IUser_getSeachPeople_InputMessage">
-    <wsdl:part name="parameters" element="tns:getSeachPeople" />
+  <wsdl:message name="IUser_getSearchPeople_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSearchPeople" />
   </wsdl:message>
-  <wsdl:message name="IUser_getSeachPeople_OutputMessage">
-    <wsdl:part name="parameters" element="tns:getSeachPeopleResponse" />
+  <wsdl:message name="IUser_getSearchPeople_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSearchPeopleResponse" />
   </wsdl:message>
   <wsdl:message name="IUser_Add_Friend_InputMessage">
     <wsdl:part name="parameters" element="tns:Add_Friend" />
@@ -973,23 +1111,23 @@
   <wsdl:message name="IUser_Add_Friend_OutputMessage">
     <wsdl:part name="parameters" element="tns:Add_FriendResponse" />
   </wsdl:message>
-  <wsdl:message name="IUser_Add_Room_InputMessage">
-    <wsdl:part name="parameters" element="tns:Add_Room" />
-  </wsdl:message>
-  <wsdl:message name="IUser_Add_Room_OutputMessage">
-    <wsdl:part name="parameters" element="tns:Add_RoomResponse" />
-  </wsdl:message>
   <wsdl:message name="IUser_RemoveFriend_InputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFriend" />
   </wsdl:message>
   <wsdl:message name="IUser_RemoveFriend_OutputMessage">
     <wsdl:part name="parameters" element="tns:RemoveFriendResponse" />
   </wsdl:message>
-  <wsdl:message name="IUser_RemoveRoom_InputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveRoom" />
+  <wsdl:message name="IUser_GetUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserId" />
   </wsdl:message>
-  <wsdl:message name="IUser_RemoveRoom_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RemoveRoomResponse" />
+  <wsdl:message name="IUser_GetUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUser_GetFriends_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriends" />
+  </wsdl:message>
+  <wsdl:message name="IUser_GetFriends_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFriendsResponse" />
   </wsdl:message>
   <wsdl:message name="IUser_GetMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMessage" />
@@ -1015,6 +1153,24 @@
   <wsdl:message name="IRoom_SendMessageAllUsersInRoom_OutputMessage">
     <wsdl:part name="parameters" element="tns:SendMessageAllUsersInRoomResponse" />
   </wsdl:message>
+  <wsdl:message name="IRoom_ExitFromRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExitFromRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_ExitFromRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExitFromRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_JoinInRoom_InputMessage">
+    <wsdl:part name="parameters" element="tns:JoinInRoom" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_JoinInRoom_OutputMessage">
+    <wsdl:part name="parameters" element="tns:JoinInRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_GetRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRooms" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_GetRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomsResponse" />
+  </wsdl:message>
   <wsdl:message name="IRoom_GetMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMessage" />
   </wsdl:message>
@@ -1035,25 +1191,25 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUser/ResendCode" message="tns:IUser_ResendCode_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUser/ResendCodeResponse" message="tns:IUser_ResendCode_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="getSeachPeople">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUser/getSeachPeople" message="tns:IUser_getSeachPeople_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUser/getSeachPeopleResponse" message="tns:IUser_getSeachPeople_OutputMessage" />
+    <wsdl:operation name="getSearchPeople">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUser/getSearchPeople" message="tns:IUser_getSearchPeople_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUser/getSearchPeopleResponse" message="tns:IUser_getSearchPeople_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Add_Friend">
       <wsdl:input wsaw:Action="http://tempuri.org/IUser/Add_Friend" message="tns:IUser_Add_Friend_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUser/Add_FriendResponse" message="tns:IUser_Add_Friend_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="Add_Room">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUser/Add_Room" message="tns:IUser_Add_Room_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUser/Add_RoomResponse" message="tns:IUser_Add_Room_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="RemoveFriend">
       <wsdl:input wsaw:Action="http://tempuri.org/IUser/RemoveFriend" message="tns:IUser_RemoveFriend_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUser/RemoveFriendResponse" message="tns:IUser_RemoveFriend_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="RemoveRoom">
-      <wsdl:input wsaw:Action="http://tempuri.org/IUser/RemoveRoom" message="tns:IUser_RemoveRoom_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IUser/RemoveRoomResponse" message="tns:IUser_RemoveRoom_OutputMessage" />
+    <wsdl:operation name="GetUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUser/GetUserId" message="tns:IUser_GetUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUser/GetUserIdResponse" message="tns:IUser_GetUserId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFriends">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUser/GetFriends" message="tns:IUser_GetFriends_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUser/GetFriendsResponse" message="tns:IUser_GetFriends_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IUser/GetMessage" message="tns:IUser_GetMessage_OutputCallbackMessage" />
@@ -1076,6 +1232,18 @@
     <wsdl:operation name="SendMessageAllUsersInRoom">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoom" message="tns:IRoom_SendMessageAllUsersInRoom_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoomResponse" message="tns:IRoom_SendMessageAllUsersInRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExitFromRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoom/ExitFromRoom" message="tns:IRoom_ExitFromRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoom/ExitFromRoomResponse" message="tns:IRoom_ExitFromRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="JoinInRoom">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoom/JoinInRoom" message="tns:IRoom_JoinInRoom_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoom/JoinInRoomResponse" message="tns:IRoom_JoinInRoom_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoom/GetRooms" message="tns:IRoom_GetRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoom/GetRoomsResponse" message="tns:IRoom_GetRooms_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IRoom/GetMessage" message="tns:IRoom_GetMessage_OutputCallbackMessage" />
@@ -1128,14 +1296,14 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="getSeachPeople">
-      <soap12:operation soapAction="http://tempuri.org/IUser/getSeachPeople" style="document" />
+    <wsdl:operation name="getSearchPeople">
+      <soap12:operation soapAction="http://tempuri.org/IUser/getSearchPeople" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#User_getSeachPeople_Input_policy" />
+        <wsp:PolicyReference URI="#User_getSearchPeople_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#User_getSeachPeople_output_policy" />
+        <wsp:PolicyReference URI="#User_getSearchPeople_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1150,17 +1318,6 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="Add_Room">
-      <soap12:operation soapAction="http://tempuri.org/IUser/Add_Room" style="document" />
-      <wsdl:input>
-        <wsp:PolicyReference URI="#User_Add_Room_Input_policy" />
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <wsp:PolicyReference URI="#User_Add_Room_output_policy" />
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="RemoveFriend">
       <soap12:operation soapAction="http://tempuri.org/IUser/RemoveFriend" style="document" />
       <wsdl:input>
@@ -1172,14 +1329,25 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
-    <wsdl:operation name="RemoveRoom">
-      <soap12:operation soapAction="http://tempuri.org/IUser/RemoveRoom" style="document" />
+    <wsdl:operation name="GetUserId">
+      <soap12:operation soapAction="http://tempuri.org/IUser/GetUserId" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#User_RemoveRoom_Input_policy" />
+        <wsp:PolicyReference URI="#User_GetUserId_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#User_RemoveRoom_output_policy" />
+        <wsp:PolicyReference URI="#User_GetUserId_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFriends">
+      <soap12:operation soapAction="http://tempuri.org/IUser/GetFriends" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#User_GetFriends_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#User_GetFriends_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
@@ -1238,6 +1406,39 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ExitFromRoom">
+      <soap12:operation soapAction="http://tempuri.org/IRoom/ExitFromRoom" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#Room_ExitFromRoom_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#Room_ExitFromRoom_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="JoinInRoom">
+      <soap12:operation soapAction="http://tempuri.org/IRoom/JoinInRoom" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#Room_JoinInRoom_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#Room_JoinInRoom_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRooms">
+      <soap12:operation soapAction="http://tempuri.org/IRoom/GetRooms" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#Room_GetRooms_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#Room_GetRooms_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMessage">
       <soap12:operation soapAction="http://tempuri.org/IRoom/GetMessage" style="document" />
       <wsdl:output>
@@ -1252,7 +1453,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/User</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
+          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1261,7 +1462,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/Message</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
+          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1270,7 +1471,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/Room</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
+          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

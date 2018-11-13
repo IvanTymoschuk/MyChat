@@ -192,7 +192,7 @@ namespace WPF.Service {
         private WPF.Service.UserDTO UserField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WPF.Service.UserDTO[] usersField;
+        private WPF.Service.UserDTO[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -257,14 +257,14 @@ namespace WPF.Service {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WPF.Service.UserDTO[] users {
+        public WPF.Service.UserDTO[] Users {
             get {
-                return this.usersField;
+                return this.UsersField;
             }
             set {
-                if ((object.ReferenceEquals(this.usersField, value) != true)) {
-                    this.usersField = value;
-                    this.RaisePropertyChanged("users");
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
                 }
             }
         }
@@ -525,11 +525,11 @@ namespace WPF.Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ResendCode", ReplyAction="http://tempuri.org/IUser/ResendCodeResponse")]
         System.Threading.Tasks.Task<bool> ResendCodeAsync(int user_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSeachPeople", ReplyAction="http://tempuri.org/IUser/getSeachPeopleResponse")]
-        WPF.Service.UserDTO[] getSeachPeople(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSearchPeople", ReplyAction="http://tempuri.org/IUser/getSearchPeopleResponse")]
+        WPF.Service.UserDTO[] getSearchPeople(string Name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSeachPeople", ReplyAction="http://tempuri.org/IUser/getSeachPeopleResponse")]
-        System.Threading.Tasks.Task<WPF.Service.UserDTO[]> getSeachPeopleAsync(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSearchPeople", ReplyAction="http://tempuri.org/IUser/getSearchPeopleResponse")]
+        System.Threading.Tasks.Task<WPF.Service.UserDTO[]> getSearchPeopleAsync(string Name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Friend", ReplyAction="http://tempuri.org/IUser/Add_FriendResponse")]
         void Add_Friend(int your_id, int friend_id);
@@ -537,23 +537,23 @@ namespace WPF.Service {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Friend", ReplyAction="http://tempuri.org/IUser/Add_FriendResponse")]
         System.Threading.Tasks.Task Add_FriendAsync(int your_id, int friend_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Room", ReplyAction="http://tempuri.org/IUser/Add_RoomResponse")]
-        void Add_Room(int your_id, int room_id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Room", ReplyAction="http://tempuri.org/IUser/Add_RoomResponse")]
-        System.Threading.Tasks.Task Add_RoomAsync(int your_id, int room_id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
         void RemoveFriend(int your_id, int friend_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
         System.Threading.Tasks.Task RemoveFriendAsync(int your_id, int friend_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveRoom", ReplyAction="http://tempuri.org/IUser/RemoveRoomResponse")]
-        void RemoveRoom(int your_id, int room_id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetUserId", ReplyAction="http://tempuri.org/IUser/GetUserIdResponse")]
+        WPF.Service.UserDTO GetUserId(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveRoom", ReplyAction="http://tempuri.org/IUser/RemoveRoomResponse")]
-        System.Threading.Tasks.Task RemoveRoomAsync(int your_id, int room_id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetUserId", ReplyAction="http://tempuri.org/IUser/GetUserIdResponse")]
+        System.Threading.Tasks.Task<WPF.Service.UserDTO> GetUserIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        WPF.Service.UserDTO[] GetFriends(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        System.Threading.Tasks.Task<WPF.Service.UserDTO[]> GetFriendsAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -623,12 +623,12 @@ namespace WPF.Service {
             return base.Channel.ResendCodeAsync(user_id);
         }
         
-        public WPF.Service.UserDTO[] getSeachPeople(string Name) {
-            return base.Channel.getSeachPeople(Name);
+        public WPF.Service.UserDTO[] getSearchPeople(string Name) {
+            return base.Channel.getSearchPeople(Name);
         }
         
-        public System.Threading.Tasks.Task<WPF.Service.UserDTO[]> getSeachPeopleAsync(string Name) {
-            return base.Channel.getSeachPeopleAsync(Name);
+        public System.Threading.Tasks.Task<WPF.Service.UserDTO[]> getSearchPeopleAsync(string Name) {
+            return base.Channel.getSearchPeopleAsync(Name);
         }
         
         public void Add_Friend(int your_id, int friend_id) {
@@ -639,14 +639,6 @@ namespace WPF.Service {
             return base.Channel.Add_FriendAsync(your_id, friend_id);
         }
         
-        public void Add_Room(int your_id, int room_id) {
-            base.Channel.Add_Room(your_id, room_id);
-        }
-        
-        public System.Threading.Tasks.Task Add_RoomAsync(int your_id, int room_id) {
-            return base.Channel.Add_RoomAsync(your_id, room_id);
-        }
-        
         public void RemoveFriend(int your_id, int friend_id) {
             base.Channel.RemoveFriend(your_id, friend_id);
         }
@@ -655,12 +647,20 @@ namespace WPF.Service {
             return base.Channel.RemoveFriendAsync(your_id, friend_id);
         }
         
-        public void RemoveRoom(int your_id, int room_id) {
-            base.Channel.RemoveRoom(your_id, room_id);
+        public WPF.Service.UserDTO GetUserId(int id) {
+            return base.Channel.GetUserId(id);
         }
         
-        public System.Threading.Tasks.Task RemoveRoomAsync(int your_id, int room_id) {
-            return base.Channel.RemoveRoomAsync(your_id, room_id);
+        public System.Threading.Tasks.Task<WPF.Service.UserDTO> GetUserIdAsync(int id) {
+            return base.Channel.GetUserIdAsync(id);
+        }
+        
+        public WPF.Service.UserDTO[] GetFriends(int id) {
+            return base.Channel.GetFriends(id);
+        }
+        
+        public System.Threading.Tasks.Task<WPF.Service.UserDTO[]> GetFriendsAsync(int id) {
+            return base.Channel.GetFriendsAsync(id);
         }
     }
     
@@ -734,6 +734,24 @@ namespace WPF.Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoom", ReplyAction="http://tempuri.org/IRoom/SendMessageAllUsersInRoomResponse")]
         System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WPF.Service.RoomDTO room);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/ExitFromRoom", ReplyAction="http://tempuri.org/IRoom/ExitFromRoomResponse")]
+        void ExitFromRoom(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/ExitFromRoom", ReplyAction="http://tempuri.org/IRoom/ExitFromRoomResponse")]
+        System.Threading.Tasks.Task ExitFromRoomAsync(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/JoinInRoom", ReplyAction="http://tempuri.org/IRoom/JoinInRoomResponse")]
+        void JoinInRoom(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/JoinInRoom", ReplyAction="http://tempuri.org/IRoom/JoinInRoomResponse")]
+        System.Threading.Tasks.Task JoinInRoomAsync(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
+        WPF.Service.RoomDTO[] GetRooms(int your_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
+        System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> GetRoomsAsync(int your_id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -785,6 +803,30 @@ namespace WPF.Service {
         
         public System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WPF.Service.RoomDTO room) {
             return base.Channel.SendMessageAllUsersInRoomAsync(room);
+        }
+        
+        public void ExitFromRoom(int your_id, int room_id) {
+            base.Channel.ExitFromRoom(your_id, room_id);
+        }
+        
+        public System.Threading.Tasks.Task ExitFromRoomAsync(int your_id, int room_id) {
+            return base.Channel.ExitFromRoomAsync(your_id, room_id);
+        }
+        
+        public void JoinInRoom(int your_id, int room_id) {
+            base.Channel.JoinInRoom(your_id, room_id);
+        }
+        
+        public System.Threading.Tasks.Task JoinInRoomAsync(int your_id, int room_id) {
+            return base.Channel.JoinInRoomAsync(your_id, room_id);
+        }
+        
+        public WPF.Service.RoomDTO[] GetRooms(int your_id) {
+            return base.Channel.GetRooms(your_id);
+        }
+        
+        public System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> GetRoomsAsync(int your_id) {
+            return base.Channel.GetRoomsAsync(your_id);
         }
     }
 }

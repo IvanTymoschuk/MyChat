@@ -92,9 +92,11 @@ namespace WPF.ViewModels
             UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
 
             Friends = new ObservableCollection<User>();
-            
-           
-                Friends.Add(Mapper.Map<UserDTO,User>( userClient.getSeachPeople("2")[0]));
+
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+
+            Friends.Add(Mapper.Map<UserDTO,User>( userClient.getSearchPeople("2")[0]));
             
 
             Rooms = new ObservableCollection<Room>();
