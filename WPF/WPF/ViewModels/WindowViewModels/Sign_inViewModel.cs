@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using AutoMapper;
+using Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,14 +7,24 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net.Mail;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WPF.Commands;
 using WPF.MockModuls;
+using WPF.Service;
 
 namespace WPF.ViewModels.WindowViewModels
 {
+    public class CallBackHandler :IUserCallback, IMessageCallback, IRoomCallback
+    {
+        public void GetMessage(MessageDTO msg)
+        {
+            MessageBox.Show(msg.Body);
+        }
+    }
+
     public class Sign_inViewModel: ViewModelBase
     {
 
@@ -98,7 +109,14 @@ namespace WPF.ViewModels.WindowViewModels
                    }
 
 
-                   MainWindow sign = new MainWindow() { DataContext = new MainViewModel(new UserMocks().GetMock().ToList()[0]) };
+
+                   UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
+                   Mapper.Reset();
+                   Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+                   User user = Mapper.Map<UserDTO,User>(userClient.SignIn(login,password));
+
+
+                   MainWindow sign = new MainWindow() { DataContext = new MainViewModel(user) };
                    sign.Show();
                    App.Current.MainWindow.Close();
                    App.Current.MainWindow = sign;

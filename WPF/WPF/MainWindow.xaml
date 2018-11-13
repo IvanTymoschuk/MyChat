@@ -28,7 +28,7 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition Width="0.4*"></ColumnDefinition>
 
-</Grid.ColumnDefinitions>
+        </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="100"></RowDefinition>
@@ -38,14 +38,17 @@
         </Grid.RowDefinitions>
 
 
+        <StackPanel Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Image  Source="https://s3.amazonaws.com/peoplepng/wp-content/uploads/2018/06/30085021/Cock-PNG-Pictures.png" Grid.Column="1"></Image>
+            <Label  FontFamily="OCR A Extended" FontSize="60" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" >Piven.chat</Label>
 
-        <Label Grid.ColumnSpan="3" FontFamily="OCR A Extended" FontSize="60" HorizontalAlignment="Right"  VerticalAlignment="Center" FontWeight="Bold" >HI TOM!</Label>
-
+        </StackPanel>
+        
         <Grid  Grid.Row="1"  Grid.Column="1" Margin="20">
-           <Grid.RowDefinitions>
-               <RowDefinition></RowDefinition>
-               <RowDefinition Height="50"></RowDefinition>
-              
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+
 
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -74,15 +77,15 @@
                 <ListBox.ItemTemplate >
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Margin="3" MaxWidth="370" HorizontalAlignment="Left">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
-                                <ColumnDefinition Width="0.5*"></ColumnDefinition>
-                                <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
-                            <Button VerticalAlignment="Top"  Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
-                                <TextBlock Text="{Binding Sender.Name,Converter={StaticResource NameConverter}}"></TextBlock>
-                            </Button>
+                                <Button VerticalAlignment="Top"  Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                                    <TextBlock Text="{Binding Sender.Name,Converter={StaticResource NameConverter}}"></TextBlock>
+                                </Button>
                                 <TextBlock FontSize="16" VerticalAlignment="Center" Margin="20,0" Grid.Column="1" Text="{Binding Body}" TextWrapping="Wrap"></TextBlock>
                                 <TextBlock Grid.Column="2" Margin="0,10,10,10" Foreground="DarkGray" Text="{Binding DateTimeSended, StringFormat={}{0:hh:mm}}" ></TextBlock>
                             </Grid>
@@ -93,14 +96,14 @@
 
 
             <TextBox Text="{Binding MessageBody}" Grid.Row="1" TextWrapping="Wrap" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" VerticalContentAlignment="Center" FontSize="16"></TextBox>
-        
+
             <Button Grid.Column="2" Grid.Row="1" Command="{Binding SendCommand}">
                 <iconPacks:PackIconMaterial Kind="Send"></iconPacks:PackIconMaterial>
             </Button>
             <Button  Grid.Column="1" Grid.Row="1">
                 <iconPacks:PackIconMaterial Kind="Attachment"></iconPacks:PackIconMaterial>
             </Button >
-               
+
 
 
         </Grid>
@@ -119,18 +122,18 @@
 
 
                             </Grid.ColumnDefinitions>
-                                <Button  Tag="{Binding Id}" Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
+                            <Button  Tag="{Binding Id}" Width="50" Height="50" Style="{DynamicResource MetroCircleButtonStyle}">
                                 <TextBlock Text="{Binding Name,Converter={StaticResource NameConverter}}"></TextBlock>
                             </Button>
 
                             <StackPanel Grid.Column="1" Margin="5" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14">  </TextBlock>
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"></TextBlock>
                                 <TextBlock Text="{Binding Email}" Foreground="DarkGray" FontSize="12"></TextBlock>
 
                             </StackPanel>
 
-                           
-                            
+
+
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -182,7 +185,7 @@
 
         <StackPanel Grid.Row="2" Grid.Column="2"  Margin="20"  >
             <Button HorizontalAlignment="Right" Height="60" Command="{Binding UserSignOut}">Sign Out</Button>
-        </StackPanel>       
+        </StackPanel>
 
 
     </Grid>

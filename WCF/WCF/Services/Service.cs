@@ -1,4 +1,4 @@
-﻿using LoggerLibrary;
+﻿//using LoggerLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +24,7 @@ namespace WCF
         {
             db = new DBase();
             confirmCodes = new List<ConfirmCodeDTO>();
-            Logger.Log("User Added");
+            //Logger.Log("User Added");
         }
 
 

@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28010.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF", "WPF\WPF.csproj", "{6CE8FD6B-2C5D-4A07-9793-1B11A0F5B868}"
+	ProjectSection(ProjectDependencies) = postProject
+		{6E41DFCE-3136-4699-A74F-E398BCABC831} = {6E41DFCE-3136-4699-A74F-E398BCABC831}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WCF", "..\WCF\WCF\WCF.csproj", "{6E41DFCE-3136-4699-A74F-E398BCABC831}"
 EndProject
