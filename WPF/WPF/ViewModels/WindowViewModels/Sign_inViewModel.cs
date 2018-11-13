@@ -113,7 +113,17 @@ namespace WPF.ViewModels.WindowViewModels
                    UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
                    Mapper.Reset();
                    Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
-                   User user = Mapper.Map<UserDTO,User>(userClient.SignIn(login,password));
+                  
+
+                   UserDTO us = (userClient.SignIn(login, password));
+                   User user;
+                   if (us != null)
+                       user = Mapper.Map<UserDTO, User>(us as UserDTO);
+                   else
+                   {
+                       Warning = "Login/Password is incorrect";
+                       return;
+                   }
 
 
                    MainWindow sign = new MainWindow() { DataContext = new MainViewModel(user) };

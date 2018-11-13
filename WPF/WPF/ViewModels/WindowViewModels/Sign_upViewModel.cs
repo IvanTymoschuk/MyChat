@@ -130,7 +130,7 @@ namespace WPF.ViewModels.WindowViewModels
 
 
 
-                   Sign_in sign=new Sign_in(){DataContext=new Sign_inViewModel()};
+                   UserInfo sign=new UserInfo(){DataContext=new Sign_inViewModel()};
                    sign.Show();
                    App.Current.MainWindow.Close();
                    App.Current.MainWindow = sign;

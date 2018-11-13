@@ -63,6 +63,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Printing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -105,6 +106,9 @@
     <Compile Include="MockModuls\MessageMocks.cs" />
     <Compile Include="MockModuls\RoomMocks.cs" />
     <Compile Include="MockModuls\UserMocks.cs" />
+    <Compile Include="UserInfo.xaml.cs">
+      <DependentUpon>UserInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Sign_in.xaml.cs">
       <DependentUpon>Sign_in.xaml</DependentUpon>
     </Compile>
@@ -116,6 +120,7 @@
     </Compile>
     <Compile Include="ViewModels\WindowViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="ViewModels\WindowViewModels\UserInfoViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModels\Sign_upViewModel.cs" />
     <Compile Include="ViewModels\WindowViewModels\Sign_inViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -130,6 +135,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="UserInfo.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Sign_in.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
