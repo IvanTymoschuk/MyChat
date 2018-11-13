@@ -1,4 +1,4 @@
-﻿using LoggerLibrary;
+﻿//using LoggerLibrary;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -24,7 +24,7 @@ namespace WCF
         {
             db = new DBase();
             confirmCodes = new List<ConfirmCodeDTO>();
-            Logger.Log("User Added");
+            //Logger.Log("User Added");
         }
 
 
@@ -93,26 +93,15 @@ namespace WCF
 
         public bool Confirming(int user_id, int Code)
         {
-            ConfirmCodeDTO confirmCode = new ConfirmCodeDTO();
-            foreach (var el in confirmCodes)
+          
+            foreach (var el in db.ConfirmCodes)
             {
-                using (StreamWriter sw = new StreamWriter("log.txt"))
-                {
-                    sw.WriteLine("USER_ID: " + el.user.Id);
-                }
                 if (el.user.Id == user_id && el.code == Code)
                 {
-
-                    foreach (var _el in db.Users)
-                    {
-                        if (_el.Id == user_id)
-                        {
-                            _el.IsConfirmed = true;
-                            confirmCode = el;
+                    db.Users.FirstOrDefault(x => x.Id == user_id).IsConfirmed = true;
                             db.SaveChanges();
                             return true;
-                        }
-                    }
+                    
                 }
             }
             return false;
@@ -120,7 +109,7 @@ namespace WCF
 
 
 
-        public UserDTO Registration(string Email, string Password, string Login)
+        public UserDTO Registration(string Email,string Name, string Password, string Login)
         {
            
             bool isExist = false;
@@ -131,7 +120,7 @@ namespace WCF
             {
                 Random random = new Random();
                 int code = random.Next(1111, 9999);
-                UserDTO u = new UserDTO() { Id = code, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null, callback= OperationContext.Current.GetCallbackChannel<IUserCallback>() };
+                UserDTO u = new UserDTO() { Name = Name, Email = Email, Login = Login, Friends = null, IsConfirmed = false, Password = Password, Rooms = null, callback= OperationContext.Current.GetCallbackChannel<IUserCallback>() };
                 Mapper.Reset();
                 Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
 
@@ -171,7 +160,7 @@ namespace WCF
                 //File.WriteAllText(path, json);
                 #endregion
 
-                confirmCodes.Add(new ConfirmCodeDTO() { Id = code, code = code, user = u });
+                confirmCodes.Add(new ConfirmCodeDTO() { code = code, user = u });
 
               
                 db.Users.Add(user);
@@ -237,7 +226,7 @@ namespace WCF
             Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
             foreach (var el in db.Users)
             {
-                if (el.Login.Contains(Name) == true)
+                if (el.Name.Contains(Name) == true)
                 {
                     UserDTO user = Mapper.Map<User, UserDTO>(el);
                     SearchUsers.Add(user);

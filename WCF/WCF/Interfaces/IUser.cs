@@ -14,7 +14,7 @@ namespace WCF.Interfaces
         [OperationContract]
         UserDTO SignIn(string EmailOrLogin, string password);
         [OperationContract]
-        UserDTO Registration(string Email, string Password, string Login);
+        UserDTO Registration(string Email,string Name, string Password, string Login);
         [OperationContract]
         bool Confirming(int user_id, int Code);
         [OperationContract]

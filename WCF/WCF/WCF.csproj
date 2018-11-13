@@ -84,10 +84,6 @@
       <Project>{c30a261c-4dec-4552-8140-1146bf9594e1}</Project>
       <Name>DAL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\LoggerLibrary\LoggerLibrary.csproj">
-      <Project>{7e14c10f-b6b5-426f-b574-6f78e937262e}</Project>
-      <Name>LoggerLibrary</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

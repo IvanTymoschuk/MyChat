@@ -12,7 +12,7 @@ namespace DAL.Initializers
     {
         protected override void Seed(DBase context)
         {
-            context.Users.Add(new User { Login = "asd" });
+           // context.Users.Add(new User { Login = "asd",Pass });
 
             context.SaveChanges();
         }

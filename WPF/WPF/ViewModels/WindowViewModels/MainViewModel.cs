@@ -10,26 +10,39 @@ using System.Threading.Tasks;
 using System.Windows;
 using WPF.Commands;
 using WPF.MockModuls;
+using WPF.Service;
+using System.ServiceModel;
+using WPF.ViewModels.WindowViewModels;
+using AutoMapper;
 
 namespace WPF.ViewModels
 {
+
+    public class ConfirmCode
+    { }
+
+
+
     public class MainViewModel : ViewModelBase
     {
         public ObservableCollection<User> Friends { get; set; }
 
         public ObservableCollection<Message> Messages { get; set; }
 
-        public ObservableCollection<Room> Rooms  { get; set; }
+        public ObservableCollection<Room> Rooms { get; set; }
 
 
         public Room SelectedRoom { get; set; }
 
 
 
+
+
+
         private string message;
         public string MessageBody
         {
-            get { return message;}
+            get { return message; }
             set
             {
                 message = value;
@@ -49,7 +62,7 @@ namespace WPF.ViewModels
 
 
                 _selectedUser = value;
-               
+
                 RaisePropertyChanged();
             }
         }
@@ -69,20 +82,20 @@ namespace WPF.ViewModels
             }
         }
 
-       
+
 
 
 
 
         public MainViewModel(User user)
         {
-
+            UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
 
             Friends = new ObservableCollection<User>();
-            foreach (var item in user.Friends)
-            {
-              Friends.Add(item);
-            }
+            
+           
+                Friends.Add(Mapper.Map<UserDTO,User>( userClient.getSeachPeople("2")[0]));
+            
 
             Rooms = new ObservableCollection<Room>();
             foreach (var item in user.Rooms)
@@ -96,14 +109,14 @@ namespace WPF.ViewModels
         {
             get
             {
-                
+
                 return sendCommand ??
 
                (sendCommand = new RelayCommand(obj =>
                {
 
                    //Messages.Add(new Message(){Sender = Users[0],Body = message,DateTimeSended = DateTime.Now});
-                  
+
                }));
             }
         }
@@ -141,6 +154,11 @@ namespace WPF.ViewModels
                        }));
             }
         }
+
+        
+
+
+
 
     }
 }

@@ -27,7 +27,7 @@ namespace DAL
         public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
+        public virtual DbSet<ConfirmCode> ConfirmCodes { get; set; }
 
 
     }

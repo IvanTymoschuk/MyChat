@@ -1,17 +1,24 @@
-﻿using Models;
+﻿using AutoMapper;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Mail;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using WPF.Commands;
 using WPF.MockModuls;
+using WPF.Service;
 
 namespace WPF.ViewModels.WindowViewModels
 {
+
+
+
+
     public class Sign_upViewModel: ViewModelBase
     {
 
@@ -106,7 +113,23 @@ namespace WPF.ViewModels.WindowViewModels
                        return;
                    }
 
-                   MessageBox.Show(login + " registred");
+
+
+                   UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
+                   Mapper.Reset();
+                   Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+                   UserDTO us = (userClient.Registration(email, name, password, login));
+                   User user;
+                   if (us!=null)
+                       user = Mapper.Map<UserDTO, User>(us as UserDTO);
+                   else
+                   {
+                       Warning = "Login is used";
+                       return;
+                   }
+
+
+
                    Sign_in sign=new Sign_in(){DataContext=new Sign_inViewModel()};
                    sign.Show();
                    App.Current.MainWindow.Close();

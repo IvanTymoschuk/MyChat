@@ -32,7 +32,20 @@ namespace Models
 
         public string Email { get; set; }
 
-        
+        private RelayCommand userInfoCommand;
+        public RelayCommand UserInfoCommand
+        {
+            get
+            {
+
+                return userInfoCommand ??
+
+                       (userInfoCommand = new RelayCommand(obj =>
+                       {
+                           MessageBox.Show(obj.ToString());
+                       }));
+            }
+        }
 
     }
 }
