@@ -118,10 +118,18 @@ namespace WPF.ViewModels.WindowViewModels
                    UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
                    Mapper.Reset();
                    Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
-                   User user = Mapper.Map<UserDTO, User>(userClient.Registration(email,password,login));
+                   UserDTO us = (userClient.Registration(email, name, password, login));
+                   User user;
+                   if (us!=null)
+                       user = Mapper.Map<UserDTO, User>(us as UserDTO);
+                   else
+                   {
+                       Warning = "Login is used";
+                       return;
+                   }
 
 
-                   MessageBox.Show(login + " registred");
+
                    Sign_in sign=new Sign_in(){DataContext=new Sign_inViewModel()};
                    sign.Show();
                    App.Current.MainWindow.Close();

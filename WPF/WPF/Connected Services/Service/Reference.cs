@@ -38,6 +38,9 @@ namespace WPF.Service {
         private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -114,6 +117,19 @@ namespace WPF.Service {
                 if ((object.ReferenceEquals(this.LoginField, value) != true)) {
                     this.LoginField = value;
                     this.RaisePropertyChanged("Login");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -492,10 +508,10 @@ namespace WPF.Service {
         System.Threading.Tasks.Task<WPF.Service.UserDTO> SignInAsync(string EmailOrLogin, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Registration", ReplyAction="http://tempuri.org/IUser/RegistrationResponse")]
-        WPF.Service.UserDTO Registration(string Email, string Password, string Login);
+        WPF.Service.UserDTO Registration(string Email, string Name, string Password, string Login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Registration", ReplyAction="http://tempuri.org/IUser/RegistrationResponse")]
-        System.Threading.Tasks.Task<WPF.Service.UserDTO> RegistrationAsync(string Email, string Password, string Login);
+        System.Threading.Tasks.Task<WPF.Service.UserDTO> RegistrationAsync(string Email, string Name, string Password, string Login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Confirming", ReplyAction="http://tempuri.org/IUser/ConfirmingResponse")]
         bool Confirming(int user_id, int Code);
@@ -583,12 +599,12 @@ namespace WPF.Service {
             return base.Channel.SignInAsync(EmailOrLogin, password);
         }
         
-        public WPF.Service.UserDTO Registration(string Email, string Password, string Login) {
-            return base.Channel.Registration(Email, Password, Login);
+        public WPF.Service.UserDTO Registration(string Email, string Name, string Password, string Login) {
+            return base.Channel.Registration(Email, Name, Password, Login);
         }
         
-        public System.Threading.Tasks.Task<WPF.Service.UserDTO> RegistrationAsync(string Email, string Password, string Login) {
-            return base.Channel.RegistrationAsync(Email, Password, Login);
+        public System.Threading.Tasks.Task<WPF.Service.UserDTO> RegistrationAsync(string Email, string Name, string Password, string Login) {
+            return base.Channel.RegistrationAsync(Email, Name, Password, Login);
         }
         
         public bool Confirming(int user_id, int Code) {
