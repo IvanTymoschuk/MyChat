@@ -12,9 +12,15 @@ namespace WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value == null)
-                return "vitaly lox";
-            return (value as string).Split(' ')[0][0] + "" + (value as string).Split(' ')[1][0];
+            var words = (value as string).Split(' ');
+            string N = "";
+
+            foreach(var word in words)
+            {
+                N += word[0];
+            }
+
+            return N; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
