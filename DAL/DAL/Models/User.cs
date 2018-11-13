@@ -13,6 +13,7 @@ namespace DAL.Models
         {
             Rooms = new List<Room>();
             Friends = new List<User>();
+            IFriend = new List<User>();
         }
 
         public int Id { get; set; }
@@ -21,13 +22,14 @@ namespace DAL.Models
         public string Name { get; set; }
       
         public string Password { get; set; }
-       
-        public List<Room> Rooms { get; set; }
+
+        public ICollection<Room> Rooms { get; set; }
         
         public bool IsConfirmed { get; set; }
         
-        public List<User> Friends { get; set; }
-      
+        public ICollection<User> Friends { get; set; }
+        public ICollection<User> IFriend { get; set; }
+
         public string Email { get; set; }
     }
 }

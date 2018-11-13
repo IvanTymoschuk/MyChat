@@ -15,6 +15,7 @@ namespace WCF.Classes
         {
             Rooms = new List<RoomDTO>();
             Friends = new List<UserDTO>();
+            IFriend = new List<UserDTO>();
         }
         [DataMember]
         public int Id { get; set; }
@@ -30,6 +31,7 @@ namespace WCF.Classes
         public bool IsConfirmed { get; set; }
         [DataMember]
         public List<UserDTO> Friends { get; set; }
+        public ICollection<UserDTO> IFriend { get; set; }
         [DataMember]
         public string Email { get; set; }
         public IUserCallback callback { get; set; }

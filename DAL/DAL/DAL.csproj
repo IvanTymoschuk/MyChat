@@ -55,11 +55,6 @@
   <ItemGroup>
     <Compile Include="DBase.cs" />
     <Compile Include="Initializers\MyInit.cs" />
-    <Compile Include="Migrations\201811131546256_m1.cs" />
-    <Compile Include="Migrations\201811131546256_m1.Designer.cs">
-      <DependentUpon>201811131546256_m1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Attach.cs" />
     <Compile Include="Models\ConfirmCode.cs" />
     <Compile Include="Models\Message.cs" />
@@ -71,11 +66,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201811131546256_m1.resx">
-      <DependentUpon>201811131546256_m1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

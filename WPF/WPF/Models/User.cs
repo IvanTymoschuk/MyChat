@@ -14,6 +14,7 @@ namespace Models
         {
             Rooms = new List<Room>();
             Friends = new List<User>();
+            IFriend = new List<User>();
         }
 
         public int Id { get; set; }
@@ -29,6 +30,7 @@ namespace Models
         public bool IsConfirmed { get; set; }
 
         public List<User> Friends { get; set; }
+        public ICollection<User> IFriend { get; set; }
 
         public string Email { get; set; }
 

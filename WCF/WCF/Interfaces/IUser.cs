@@ -20,14 +20,15 @@ namespace WCF.Interfaces
         [OperationContract]
         bool ResendCode(int user_id);
         [OperationContract]
-        IEnumerable<UserDTO> getSeachPeople(string Name);
+        IEnumerable<UserDTO> getSearchPeople(string Name);
         [OperationContract]
         void Add_Friend(int your_id, int friend_id);
         [OperationContract]
-        void Add_Room(int your_id, int room_id);
-        [OperationContract]
         void RemoveFriend(int your_id, int friend_id);
         [OperationContract]
-        void RemoveRoom(int your_id, int room_id);
+        UserDTO GetUserId(int id);
+        [OperationContract]
+        IEnumerable<UserDTO> GetFriends(int id);
+
     }
 }
