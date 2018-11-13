@@ -93,26 +93,15 @@ namespace WCF
 
         public bool Confirming(int user_id, int Code)
         {
-            ConfirmCodeDTO confirmCode = new ConfirmCodeDTO();
-            foreach (var el in confirmCodes)
+          
+            foreach (var el in db.ConfirmCodes)
             {
-                using (StreamWriter sw = new StreamWriter("log.txt"))
-                {
-                    sw.WriteLine("USER_ID: " + el.user.Id);
-                }
                 if (el.user.Id == user_id && el.code == Code)
                 {
-
-                    foreach (var _el in db.Users)
-                    {
-                        if (_el.Id == user_id)
-                        {
-                            _el.IsConfirmed = true;
-                            confirmCode = el;
+                    db.Users.FirstOrDefault(x => x.Id == user_id).IsConfirmed = true;
                             db.SaveChanges();
                             return true;
-                        }
-                    }
+                    
                 }
             }
             return false;

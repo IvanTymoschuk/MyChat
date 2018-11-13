@@ -53,6 +53,7 @@
     <Compile Include="DBase.cs" />
     <Compile Include="Initializers\MyInit.cs" />
     <Compile Include="Models\Attach.cs" />
+    <Compile Include="Models\ConfirmCode.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Models\User.cs" />
