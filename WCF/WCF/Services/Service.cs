@@ -87,7 +87,7 @@ namespace WCF
 
         public void Add_Room(int your_id, int room_id)
         {
-            db.Rooms.FirstOrDefault(x => x.Id == room_id).users.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
+            db.Rooms.FirstOrDefault(x => x.Id == room_id).Users.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
             db.SaveChanges();
         }
 
