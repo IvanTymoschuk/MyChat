@@ -23,12 +23,12 @@ namespace DAL.Models
       
         public string Password { get; set; }
 
-        public ICollection<Room> Rooms { get; set; }
+        public List<Room> Rooms { get; set; }
         
         public bool IsConfirmed { get; set; }
         
-        public ICollection<User> Friends { get; set; }
-        public ICollection<User> IFriend { get; set; }
+        public List<User> Friends { get; set; }
+        public List<User> IFriend { get; set; }
 
         public string Email { get; set; }
     }

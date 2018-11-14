@@ -100,10 +100,12 @@ namespace WPF.ViewModels
             UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
             Mapper.Reset();
             Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
-             userClient.Add_Friend(user.Id,2);
-            Friends = new ObservableCollection<User>();
-            foreach (var item in userClient.GetFriends(user.Id))
+             //userClient.Add_Friend(user.Id,2);
+             //userClient.Add_Friend(user.Id,3);
+              Friends = new ObservableCollection<User>();
+            foreach (var item in userClient.GetFriends(user.Id).ToList())
             {
+
                 Friends.Add(Mapper.Map<UserDTO, User>(item as UserDTO));
             }
 

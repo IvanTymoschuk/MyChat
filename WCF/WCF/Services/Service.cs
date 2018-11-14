@@ -100,6 +100,7 @@ namespace WCF
             try
             {
                 db.Users.FirstOrDefault(x => x.Id == your_id).Friends.Add(db.Users.FirstOrDefault(x => x.Id == friend_id));
+                db.Users.FirstOrDefault(x => x.Id == friend_id).IFriend.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
                 db.SaveChanges();
             }
             catch (Exception) {  }
@@ -222,7 +223,7 @@ namespace WCF
             catch (Exception) { return null; }
         }
 
-        IEnumerable<UserDTO> IUser.getSearchPeople(string Name)
+        ICollection<UserDTO> IUser.getSearchPeople(string Name)
         {
             try
             {
@@ -286,7 +287,7 @@ namespace WCF
             catch(Exception){ }
         }
 
-        public IEnumerable<RoomDTO> GetRooms(int your_id)
+        public ICollection<RoomDTO> GetRooms(int your_id)
         {
             try
             {
@@ -323,13 +324,15 @@ namespace WCF
             }
         }
 
-        public IEnumerable<UserDTO> GetFriends(int id)
+        public ICollection<UserDTO> GetFriends(int id)
         {
             try
             {
+               // Add_Friend(2, 1);
                 Mapper.Reset();
                 Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
                 List<UserDTO> users = new List<UserDTO>();
+                //users.Add(new UserDTO() { Name = db.Users.FirstOrDefault(x => x.Id == id).Friends.Count.ToString() });
 
                 foreach (var el in db.Users.FirstOrDefault(x => x.Id == id).Friends)
                 {

@@ -19,8 +19,8 @@ namespace WCF.Classes
         public int Id { get; set; }
         [DataMember]
         public string Name { get; set; }
-        [DataMember]
-        public UserDTO User { get; set; }
+      //  [DataMember]
+      //  public UserDTO User { get; set; }
         [DataMember]
         public List<UserDTO> Users { get; set; }
         public List<MessageDTO> Messages { get; set; }

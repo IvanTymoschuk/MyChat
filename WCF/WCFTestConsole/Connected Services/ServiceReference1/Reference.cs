@@ -38,6 +38,9 @@ namespace WCFTestConsole.ServiceReference1 {
         private string LoginField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -119,6 +122,19 @@ namespace WCFTestConsole.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public string Password {
             get {
                 return this.PasswordField;
@@ -173,10 +189,7 @@ namespace WCFTestConsole.ServiceReference1 {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WCFTestConsole.ServiceReference1.UserDTO UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WCFTestConsole.ServiceReference1.UserDTO[] usersField;
+        private WCFTestConsole.ServiceReference1.UserDTO[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -228,27 +241,14 @@ namespace WCFTestConsole.ServiceReference1 {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WCFTestConsole.ServiceReference1.UserDTO User {
+        public WCFTestConsole.ServiceReference1.UserDTO[] Users {
             get {
-                return this.UserField;
+                return this.UsersField;
             }
             set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WCFTestConsole.ServiceReference1.UserDTO[] users {
-            get {
-                return this.usersField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.usersField, value) != true)) {
-                    this.usersField = value;
-                    this.RaisePropertyChanged("users");
+                if ((object.ReferenceEquals(this.UsersField, value) != true)) {
+                    this.UsersField = value;
+                    this.RaisePropertyChanged("Users");
                 }
             }
         }
@@ -492,10 +492,10 @@ namespace WCFTestConsole.ServiceReference1 {
         System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> SignInAsync(string EmailOrLogin, string password);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Registration", ReplyAction="http://tempuri.org/IUser/RegistrationResponse")]
-        WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Password, string Login);
+        WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Name, string Password, string Login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Registration", ReplyAction="http://tempuri.org/IUser/RegistrationResponse")]
-        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> RegistrationAsync(string Email, string Password, string Login);
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> RegistrationAsync(string Email, string Name, string Password, string Login);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Confirming", ReplyAction="http://tempuri.org/IUser/ConfirmingResponse")]
         bool Confirming(int user_id, int Code);
@@ -509,11 +509,11 @@ namespace WCFTestConsole.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/ResendCode", ReplyAction="http://tempuri.org/IUser/ResendCodeResponse")]
         System.Threading.Tasks.Task<bool> ResendCodeAsync(int user_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSeachPeople", ReplyAction="http://tempuri.org/IUser/getSeachPeopleResponse")]
-        WCFTestConsole.ServiceReference1.UserDTO[] getSeachPeople(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSearchPeople", ReplyAction="http://tempuri.org/IUser/getSearchPeopleResponse")]
+        WCFTestConsole.ServiceReference1.UserDTO[] getSearchPeople(string Name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSeachPeople", ReplyAction="http://tempuri.org/IUser/getSeachPeopleResponse")]
-        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> getSeachPeopleAsync(string Name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/getSearchPeople", ReplyAction="http://tempuri.org/IUser/getSearchPeopleResponse")]
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> getSearchPeopleAsync(string Name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Friend", ReplyAction="http://tempuri.org/IUser/Add_FriendResponse")]
         void Add_Friend(int your_id, int friend_id);
@@ -521,23 +521,23 @@ namespace WCFTestConsole.ServiceReference1 {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Friend", ReplyAction="http://tempuri.org/IUser/Add_FriendResponse")]
         System.Threading.Tasks.Task Add_FriendAsync(int your_id, int friend_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Room", ReplyAction="http://tempuri.org/IUser/Add_RoomResponse")]
-        void Add_Room(int your_id, int room_id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/Add_Room", ReplyAction="http://tempuri.org/IUser/Add_RoomResponse")]
-        System.Threading.Tasks.Task Add_RoomAsync(int your_id, int room_id);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
         void RemoveFriend(int your_id, int friend_id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveFriend", ReplyAction="http://tempuri.org/IUser/RemoveFriendResponse")]
         System.Threading.Tasks.Task RemoveFriendAsync(int your_id, int friend_id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveRoom", ReplyAction="http://tempuri.org/IUser/RemoveRoomResponse")]
-        void RemoveRoom(int your_id, int room_id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetUserId", ReplyAction="http://tempuri.org/IUser/GetUserIdResponse")]
+        WCFTestConsole.ServiceReference1.UserDTO GetUserId(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/RemoveRoom", ReplyAction="http://tempuri.org/IUser/RemoveRoomResponse")]
-        System.Threading.Tasks.Task RemoveRoomAsync(int your_id, int room_id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetUserId", ReplyAction="http://tempuri.org/IUser/GetUserIdResponse")]
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> GetUserIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        WCFTestConsole.ServiceReference1.UserDTO[] GetFriends(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUser/GetFriends", ReplyAction="http://tempuri.org/IUser/GetFriendsResponse")]
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> GetFriendsAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -583,12 +583,12 @@ namespace WCFTestConsole.ServiceReference1 {
             return base.Channel.SignInAsync(EmailOrLogin, password);
         }
         
-        public WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Password, string Login) {
-            return base.Channel.Registration(Email, Password, Login);
+        public WCFTestConsole.ServiceReference1.UserDTO Registration(string Email, string Name, string Password, string Login) {
+            return base.Channel.Registration(Email, Name, Password, Login);
         }
         
-        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> RegistrationAsync(string Email, string Password, string Login) {
-            return base.Channel.RegistrationAsync(Email, Password, Login);
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> RegistrationAsync(string Email, string Name, string Password, string Login) {
+            return base.Channel.RegistrationAsync(Email, Name, Password, Login);
         }
         
         public bool Confirming(int user_id, int Code) {
@@ -607,12 +607,12 @@ namespace WCFTestConsole.ServiceReference1 {
             return base.Channel.ResendCodeAsync(user_id);
         }
         
-        public WCFTestConsole.ServiceReference1.UserDTO[] getSeachPeople(string Name) {
-            return base.Channel.getSeachPeople(Name);
+        public WCFTestConsole.ServiceReference1.UserDTO[] getSearchPeople(string Name) {
+            return base.Channel.getSearchPeople(Name);
         }
         
-        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> getSeachPeopleAsync(string Name) {
-            return base.Channel.getSeachPeopleAsync(Name);
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> getSearchPeopleAsync(string Name) {
+            return base.Channel.getSearchPeopleAsync(Name);
         }
         
         public void Add_Friend(int your_id, int friend_id) {
@@ -623,14 +623,6 @@ namespace WCFTestConsole.ServiceReference1 {
             return base.Channel.Add_FriendAsync(your_id, friend_id);
         }
         
-        public void Add_Room(int your_id, int room_id) {
-            base.Channel.Add_Room(your_id, room_id);
-        }
-        
-        public System.Threading.Tasks.Task Add_RoomAsync(int your_id, int room_id) {
-            return base.Channel.Add_RoomAsync(your_id, room_id);
-        }
-        
         public void RemoveFriend(int your_id, int friend_id) {
             base.Channel.RemoveFriend(your_id, friend_id);
         }
@@ -639,12 +631,20 @@ namespace WCFTestConsole.ServiceReference1 {
             return base.Channel.RemoveFriendAsync(your_id, friend_id);
         }
         
-        public void RemoveRoom(int your_id, int room_id) {
-            base.Channel.RemoveRoom(your_id, room_id);
+        public WCFTestConsole.ServiceReference1.UserDTO GetUserId(int id) {
+            return base.Channel.GetUserId(id);
         }
         
-        public System.Threading.Tasks.Task RemoveRoomAsync(int your_id, int room_id) {
-            return base.Channel.RemoveRoomAsync(your_id, room_id);
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO> GetUserIdAsync(int id) {
+            return base.Channel.GetUserIdAsync(id);
+        }
+        
+        public WCFTestConsole.ServiceReference1.UserDTO[] GetFriends(int id) {
+            return base.Channel.GetFriends(id);
+        }
+        
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.UserDTO[]> GetFriendsAsync(int id) {
+            return base.Channel.GetFriendsAsync(id);
         }
     }
     
@@ -718,6 +718,24 @@ namespace WCFTestConsole.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoom", ReplyAction="http://tempuri.org/IRoom/SendMessageAllUsersInRoomResponse")]
         System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/ExitFromRoom", ReplyAction="http://tempuri.org/IRoom/ExitFromRoomResponse")]
+        void ExitFromRoom(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/ExitFromRoom", ReplyAction="http://tempuri.org/IRoom/ExitFromRoomResponse")]
+        System.Threading.Tasks.Task ExitFromRoomAsync(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/JoinInRoom", ReplyAction="http://tempuri.org/IRoom/JoinInRoomResponse")]
+        void JoinInRoom(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/JoinInRoom", ReplyAction="http://tempuri.org/IRoom/JoinInRoomResponse")]
+        System.Threading.Tasks.Task JoinInRoomAsync(int your_id, int room_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
+        WCFTestConsole.ServiceReference1.RoomDTO[] GetRooms(int your_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> GetRoomsAsync(int your_id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -769,6 +787,30 @@ namespace WCFTestConsole.ServiceReference1 {
         
         public System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room) {
             return base.Channel.SendMessageAllUsersInRoomAsync(room);
+        }
+        
+        public void ExitFromRoom(int your_id, int room_id) {
+            base.Channel.ExitFromRoom(your_id, room_id);
+        }
+        
+        public System.Threading.Tasks.Task ExitFromRoomAsync(int your_id, int room_id) {
+            return base.Channel.ExitFromRoomAsync(your_id, room_id);
+        }
+        
+        public void JoinInRoom(int your_id, int room_id) {
+            base.Channel.JoinInRoom(your_id, room_id);
+        }
+        
+        public System.Threading.Tasks.Task JoinInRoomAsync(int your_id, int room_id) {
+            return base.Channel.JoinInRoomAsync(your_id, room_id);
+        }
+        
+        public WCFTestConsole.ServiceReference1.RoomDTO[] GetRooms(int your_id) {
+            return base.Channel.GetRooms(your_id);
+        }
+        
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> GetRoomsAsync(int your_id) {
+            return base.Channel.GetRoomsAsync(your_id);
         }
     }
 }

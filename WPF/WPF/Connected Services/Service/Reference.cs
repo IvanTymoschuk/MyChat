@@ -189,9 +189,6 @@ namespace WPF.Service {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WPF.Service.UserDTO UserField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WPF.Service.UserDTO[] UsersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
@@ -239,19 +236,6 @@ namespace WPF.Service {
                 if ((object.ReferenceEquals(this.NameField, value) != true)) {
                     this.NameField = value;
                     this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WPF.Service.UserDTO User {
-            get {
-                return this.UserField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UserField, value) != true)) {
-                    this.UserField = value;
-                    this.RaisePropertyChanged("User");
                 }
             }
         }

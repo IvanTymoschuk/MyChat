@@ -20,6 +20,6 @@ namespace WCF.Interfaces
         [OperationContract]
         void JoinInRoom(int your_id, int room_id);
         [OperationContract]
-        IEnumerable<RoomDTO> GetRooms(int your_id);
+        ICollection<RoomDTO> GetRooms(int your_id);
     }
 }

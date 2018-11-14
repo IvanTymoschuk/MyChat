@@ -31,7 +31,7 @@ namespace WCF.Classes
         public bool IsConfirmed { get; set; }
         [DataMember]
         public List<UserDTO> Friends { get; set; }
-        public ICollection<UserDTO> IFriend { get; set; }
+        public List<UserDTO> IFriend { get; set; }
         [DataMember]
         public string Email { get; set; }
         public IUserCallback callback { get; set; }

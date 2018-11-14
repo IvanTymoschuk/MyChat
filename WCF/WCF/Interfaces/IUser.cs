@@ -20,7 +20,7 @@ namespace WCF.Interfaces
         [OperationContract]
         bool ResendCode(int user_id);
         [OperationContract]
-        IEnumerable<UserDTO> getSearchPeople(string Name);
+        ICollection<UserDTO> getSearchPeople(string Name);
         [OperationContract]
         void Add_Friend(int your_id, int friend_id);
         [OperationContract]
@@ -28,7 +28,7 @@ namespace WCF.Interfaces
         [OperationContract]
         UserDTO GetUserId(int id);
         [OperationContract]
-        IEnumerable<UserDTO> GetFriends(int id);
+        ICollection<UserDTO> GetFriends(int id);
 
     }
 }

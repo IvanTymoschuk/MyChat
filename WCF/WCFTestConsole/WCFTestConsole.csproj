@@ -65,6 +65,9 @@
     <None Include="Connected Services\ServiceReference1\WCF.Classes.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceReference1\WCFTestConsole.ServiceReference1.RoomDTO.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceReference1\WCFTestConsole.ServiceReference1.UserDTO.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
