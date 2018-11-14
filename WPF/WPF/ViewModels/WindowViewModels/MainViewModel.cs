@@ -89,20 +89,38 @@ namespace WPF.ViewModels
 
         public MainViewModel(User user)
         {
+            
+
+
+
+           
+
+           
+
             UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
-
-            Friends = new ObservableCollection<User>();
-
             Mapper.Reset();
             Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+             userClient.Add_Friend(user.Id,2);
+            Friends = new ObservableCollection<User>();
+            foreach (var item in userClient.GetFriends(user.Id))
+            {
+                Friends.Add(Mapper.Map<UserDTO, User>(item as UserDTO));
+            }
 
-            Friends.Add(Mapper.Map<UserDTO,User>( userClient.getSearchPeople("2")[0]));
+
+
+            RoomClient roomClient = new RoomClient(new InstanceContext(new CallBackHandler()));
+            Mapper.Reset();
+            Mapper.Initialize(cfg => cfg.CreateMap<RoomDTO, Room>());
+
+
+           
             
 
             Rooms = new ObservableCollection<Room>();
-            foreach (var item in user.Rooms)
+            foreach (var item in roomClient.GetRooms(user.Id))
             {
-                Rooms.Add(item);
+                Rooms.Add(Mapper.Map<RoomDTO, Room>(item as RoomDTO));
             }
 
         }

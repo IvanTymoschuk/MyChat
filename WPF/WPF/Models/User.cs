@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using WPF;
 using WPF.Commands;
+using WPF.ViewModels.WindowViewModels;
 
 namespace Models
 {
@@ -44,7 +46,10 @@ namespace Models
 
                        (userInfoCommand = new RelayCommand(obj =>
                        {
-                           MessageBox.Show(obj.ToString());
+                           UserInfo sign = new UserInfo() { DataContext = new UserInfoViewModel(int.Parse(obj.ToString())) };
+                           sign.ShowDialog();
+                          
+                          
                        }));
             }
         }

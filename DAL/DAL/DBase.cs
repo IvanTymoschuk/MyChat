@@ -17,6 +17,7 @@ namespace DAL
         public DBase()
             : base("DBase")
         {
+           
             Database.SetInitializer(new MyInit());
         }
 

@@ -106,11 +106,11 @@ namespace WCF
         }
 
 
-        //public void Add_Room(int your_id, int room_id)
-        //{
-        //    db.Rooms.FirstOrDefault(x => x.Id == room_id).users.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
-        //    db.SaveChanges();
-        //}
+        public void Add_Room(int your_id, int room_id)
+        {
+            db.Rooms.FirstOrDefault(x => x.Id == room_id).Users.Add(db.Users.FirstOrDefault(x => x.Id == your_id));
+            db.SaveChanges();
+        }
 
         public bool Confirming(int user_id, int Code)
         {
