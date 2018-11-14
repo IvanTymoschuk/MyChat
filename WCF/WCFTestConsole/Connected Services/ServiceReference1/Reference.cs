@@ -714,10 +714,10 @@ namespace WCFTestConsole.ServiceReference1 {
         System.Threading.Tasks.Task CreateRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoom", ReplyAction="http://tempuri.org/IRoom/SendMessageAllUsersInRoomResponse")]
-        void SendMessageAllUsersInRoom(WCFTestConsole.ServiceReference1.RoomDTO room);
+        void SendMessageAllUsersInRoom(WCFTestConsole.ServiceReference1.RoomDTO room, WCFTestConsole.ServiceReference1.MessageDTO msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/SendMessageAllUsersInRoom", ReplyAction="http://tempuri.org/IRoom/SendMessageAllUsersInRoomResponse")]
-        System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room);
+        System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room, WCFTestConsole.ServiceReference1.MessageDTO msg);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/ExitFromRoom", ReplyAction="http://tempuri.org/IRoom/ExitFromRoomResponse")]
         void ExitFromRoom(int your_id, int room_id);
@@ -736,6 +736,12 @@ namespace WCFTestConsole.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
         System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> GetRoomsAsync(int your_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/getSearchRooms", ReplyAction="http://tempuri.org/IRoom/getSearchRoomsResponse")]
+        WCFTestConsole.ServiceReference1.RoomDTO[] getSearchRooms(string Name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/getSearchRooms", ReplyAction="http://tempuri.org/IRoom/getSearchRoomsResponse")]
+        System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> getSearchRoomsAsync(string Name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -781,12 +787,12 @@ namespace WCFTestConsole.ServiceReference1 {
             return base.Channel.CreateRoomAsync(room);
         }
         
-        public void SendMessageAllUsersInRoom(WCFTestConsole.ServiceReference1.RoomDTO room) {
-            base.Channel.SendMessageAllUsersInRoom(room);
+        public void SendMessageAllUsersInRoom(WCFTestConsole.ServiceReference1.RoomDTO room, WCFTestConsole.ServiceReference1.MessageDTO msg) {
+            base.Channel.SendMessageAllUsersInRoom(room, msg);
         }
         
-        public System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room) {
-            return base.Channel.SendMessageAllUsersInRoomAsync(room);
+        public System.Threading.Tasks.Task SendMessageAllUsersInRoomAsync(WCFTestConsole.ServiceReference1.RoomDTO room, WCFTestConsole.ServiceReference1.MessageDTO msg) {
+            return base.Channel.SendMessageAllUsersInRoomAsync(room, msg);
         }
         
         public void ExitFromRoom(int your_id, int room_id) {
@@ -811,6 +817,14 @@ namespace WCFTestConsole.ServiceReference1 {
         
         public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> GetRoomsAsync(int your_id) {
             return base.Channel.GetRoomsAsync(your_id);
+        }
+        
+        public WCFTestConsole.ServiceReference1.RoomDTO[] getSearchRooms(string Name) {
+            return base.Channel.getSearchRooms(Name);
+        }
+        
+        public System.Threading.Tasks.Task<WCFTestConsole.ServiceReference1.RoomDTO[]> getSearchRoomsAsync(string Name) {
+            return base.Channel.getSearchRoomsAsync(Name);
         }
     }
 }
