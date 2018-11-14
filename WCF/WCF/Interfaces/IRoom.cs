@@ -21,5 +21,8 @@ namespace WCF.Interfaces
         void JoinInRoom(int your_id, int room_id);
         [OperationContract]
         ICollection<RoomDTO> GetRooms(int your_id);
+        [OperationContract]
+        ICollection<RoomDTO> getSearchRooms(string Name);
+
     }
 }

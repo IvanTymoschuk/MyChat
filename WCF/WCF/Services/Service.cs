@@ -347,5 +347,25 @@ namespace WCF
                 return null;
             }
         }
+
+        public ICollection<RoomDTO> getSearchRooms(string Name)
+        {
+            try
+            {
+                List<RoomDTO> SearchRooms = new List<RoomDTO>();
+                Mapper.Reset();
+                Mapper.Initialize(cfg => cfg.CreateMap<Room, RoomDTO>());
+                foreach (var el in db.Rooms)
+                {
+                    if (el.Name.Contains(Name) == true)
+                    {
+                        RoomDTO room = Mapper.Map<Room, RoomDTO>(el);
+                        SearchRooms.Add(room);
+                    }
+                }
+                return SearchRooms;
+            }
+            catch (Exception) { return null; }
+        }
     }
 }
