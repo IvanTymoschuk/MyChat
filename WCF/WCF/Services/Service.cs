@@ -294,7 +294,7 @@ namespace WCF
                 List<RoomDTO> rooms = new List<RoomDTO>();
                 Mapper.Reset();
                 Mapper.Initialize(cfg => cfg.CreateMap<Room, RoomDTO>());
-                foreach (var el in db.Users.FirstOrDefault(x => x.Id == your_id).Rooms)
+                foreach (var el in db.Users.Include("Rooms").FirstOrDefault(x => x.Id == your_id).Rooms)
                 {
 
 
