@@ -44,14 +44,25 @@ namespace WCF
             catch (Exception) { }
         }
 
-        public void SendMessageAllUsersInRoom(RoomDTO room)
+        public void SendMessageAllUsersInRoom(RoomDTO room, MessageDTO msg)
         {
             try
             {
-                foreach (var el in room.Users)
+                List<UserDTO> rec = new List<UserDTO>();
+                Mapper.Reset();
+                Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
+
+               
+                foreach (var el in db.Rooms.Include("Users").FirstOrDefault(x=>x.Id== room.Id).Users)
                 {
-                    el.callback.GetMessage(room.Messages[room.Messages.Count - 1]);
+                    rec.Add(Mapper.Map<User, UserDTO>(el));
                 }
+                foreach (var el in rec)
+                {
+                    //el.callback.GetMessage(new MessageDTO { Body = "Hallo mai frend"});
+                     el.callback.GetMessage(msg);
+                }
+                rec.Clear();
             }
             catch (Exception) { }
         }
@@ -200,6 +211,13 @@ namespace WCF
             catch (Exception) { return false; }
         }
 
+        public static List<IUserCallback> UserCallbacks;
+
+        static Service()
+        {
+            UserCallbacks = new List<IUserCallback>();
+        }
+
         public UserDTO SignIn(string EmailOrLogin, string password)
         {
             try
@@ -215,6 +233,7 @@ namespace WCF
                     if (el.Login == EmailOrLogin || el.Login == EmailOrLogin && el.Password == password)
                     {
                         UserDTO user = Mapper.Map<User, UserDTO>(el);
+                        UserCallbacks.Add(OperationContext.Current.GetCallbackChannel<IUserCallback>());
                         return user;
                     }
                 }
@@ -277,12 +296,17 @@ namespace WCF
                     attaches = new List<AttachDTO>();
                     attaches.Add(attach);
                 }
+
                 MessageDTO message = new MessageDTO() { Body = body, DateTimeSended = DateTime.Now, Room = room, Sender = sender, Attaches = attaches };
-                SendMessageAllUsersInRoom(room);
+                SendMessageAllUsersInRoom(room, message);
                 Mapper.Initialize(cfg => cfg.CreateMap<MessageDTO, Message>());
                 Message msg = Mapper.Map<MessageDTO, Message>(message);
+
                 db.Messages.Add(msg);
+                //db.Rooms.FirstOrDefault(x => x.Id == room.Id).Messages.Add(msg);
                 db.SaveChanges();
+              
+
             }
             catch(Exception){ }
         }

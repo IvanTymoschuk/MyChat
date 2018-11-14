@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using WCF.Interfaces;
@@ -16,6 +17,7 @@ namespace WCF.Classes
             Rooms = new List<RoomDTO>();
             Friends = new List<UserDTO>();
             IFriend = new List<UserDTO>();
+            callback = OperationContext.Current.GetCallbackChannel<IUserCallback>();
         }
         [DataMember]
         public int Id { get; set; }

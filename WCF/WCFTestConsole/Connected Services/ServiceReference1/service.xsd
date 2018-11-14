@@ -168,6 +168,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="room" nillable="true" type="q11:RoomDTO" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="msg" nillable="true" type="q12:MessageDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -212,7 +213,21 @@
   <xs:element name="GetRoomsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="GetRoomsResult" nillable="true" type="q12:ArrayOfRoomDTO" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="GetRoomsResult" nillable="true" type="q13:ArrayOfRoomDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSearchRooms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSearchRoomsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="getSearchRoomsResult" nillable="true" type="q14:ArrayOfRoomDTO" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

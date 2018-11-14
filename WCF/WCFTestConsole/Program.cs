@@ -13,7 +13,10 @@ namespace WCFTestConsole
     {
         public void GetMessage(MessageDTO msg)
         {
-            Console.WriteLine(msg.Body);
+            Console.WriteLine("sender: "+ msg.Sender.Name
+                );
+            Console.WriteLine("body:" + msg.Body);
+            Console.WriteLine("Time: "+ msg.DateTimeSended);
         }
     }
 
@@ -22,19 +25,38 @@ namespace WCFTestConsole
         static void Main(string[] args)
         {
             //try
+            ////{
+           CallBackHandler callBackHandler = new CallBackHandler();
+          UserClient userClient = new UserClient(new InstanceContext(callBackHandler));
+                RoomClient roomClient = new RoomClient(new InstanceContext(callBackHandler));
+            RoomDTO room = new RoomDTO() { Id = 1, IsPublish = true, Name = "Room", Users = null };
+            roomClient.CreateRoom(room);
+            roomClient.JoinInRoom(1, 1);
+            roomClient.JoinInRoom(2, 1);
+
+
+
+            //var users = userClient.getSearchPeople("Lox");
+            //foreach (var el in users)
             //{
-                CallBackHandler callBackHandler = new CallBackHandler();
-                UserClient userClient = new UserClient(new InstanceContext(callBackHandler));
-                Console.WriteLine(userClient.GetFriends(2).ToList().Count.ToString());
+            //    Console.WriteLine(el.Name);
+            //}
 
+
+
+            MessageClient message = new MessageClient(new InstanceContext(new CallBackHandler()));
+            message.SendMessage("asd", room, userClient.GetUserId(1),null);
            
-             
+            //MessageDTO msg = new MessageDTO() { Body = "123", DateTimeSended = DateTime.Now, Room = room, Sender = userClient.GetUserId(1) };
+           //roomClient.SendMessageAllUsersInRoom(room,msg);
+            Console.WriteLine("Done");
+            var l = roomClient.getSearchRooms("Room");
+            foreach (var el in l)
+            {
+                Console.WriteLine(el.Name);
+            }
 
-             
-                //MessageClient message = new MessageClient(new InstanceContext(new CallBackHandler()));
-                //message.SendMessage("asd", null, null, null);
-                //Console.WriteLine("Done");
-                Console.ReadLine();
+            Console.ReadLine();
             //}
             //catch(Exception ex)
             //{
