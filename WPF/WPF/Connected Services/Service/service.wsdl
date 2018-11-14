@@ -1045,6 +1045,52 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_getSearchRooms_Input_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="Room_getSearchRooms_output_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+          <sp:Header Name="Sequence" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="SequenceAcknowledgement" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="AckRequested" Namespace="http://schemas.xmlsoap.org/ws/2005/02/rm" />
+          <sp:Header Name="ChannelInstance" Namespace="http://schemas.microsoft.com/ws/2005/02/duplex" />
+          <sp:Header Name="To" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="From" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="FaultTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="ReplyTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="MessageID" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="RelatesTo" Namespace="http://www.w3.org/2005/08/addressing" />
+          <sp:Header Name="Action" Namespace="http://www.w3.org/2005/08/addressing" />
+        </sp:SignedParts>
+        <sp:EncryptedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <sp:Body />
+        </sp:EncryptedParts>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="Room_GetMessage_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -1171,6 +1217,12 @@
   <wsdl:message name="IRoom_GetRooms_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetRoomsResponse" />
   </wsdl:message>
+  <wsdl:message name="IRoom_getSearchRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:getSearchRooms" />
+  </wsdl:message>
+  <wsdl:message name="IRoom_getSearchRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:getSearchRoomsResponse" />
+  </wsdl:message>
   <wsdl:message name="IRoom_GetMessage_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:GetMessage" />
   </wsdl:message>
@@ -1244,6 +1296,10 @@
     <wsdl:operation name="GetRooms">
       <wsdl:input wsaw:Action="http://tempuri.org/IRoom/GetRooms" message="tns:IRoom_GetRooms_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IRoom/GetRoomsResponse" message="tns:IRoom_GetRooms_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="getSearchRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRoom/getSearchRooms" message="tns:IRoom_getSearchRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRoom/getSearchRoomsResponse" message="tns:IRoom_getSearchRooms_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetMessage">
       <wsdl:output wsaw:Action="http://tempuri.org/IRoom/GetMessage" message="tns:IRoom_GetMessage_OutputCallbackMessage" />
@@ -1439,6 +1495,17 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="getSearchRooms">
+      <soap12:operation soapAction="http://tempuri.org/IRoom/getSearchRooms" style="document" />
+      <wsdl:input>
+        <wsp:PolicyReference URI="#Room_getSearchRooms_Input_policy" />
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsp:PolicyReference URI="#Room_getSearchRooms_output_policy" />
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetMessage">
       <soap12:operation soapAction="http://tempuri.org/IRoom/GetMessage" style="document" />
       <wsdl:output>
@@ -1453,7 +1520,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/User</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
+          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1462,7 +1529,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/Message</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
+          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>
@@ -1471,7 +1538,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:8733/Design_Time_Addresses/Service/Room</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-BP1QFJ8\Root</Upn>
+          <Upn>tymoschuk@step.itstep.rv.ua</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

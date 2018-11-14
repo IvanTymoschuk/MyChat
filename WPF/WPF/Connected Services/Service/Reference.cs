@@ -736,6 +736,12 @@ namespace WPF.Service {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/GetRooms", ReplyAction="http://tempuri.org/IRoom/GetRoomsResponse")]
         System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> GetRoomsAsync(int your_id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/getSearchRooms", ReplyAction="http://tempuri.org/IRoom/getSearchRoomsResponse")]
+        WPF.Service.RoomDTO[] getSearchRooms(string Name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRoom/getSearchRooms", ReplyAction="http://tempuri.org/IRoom/getSearchRoomsResponse")]
+        System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> getSearchRoomsAsync(string Name);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -811,6 +817,14 @@ namespace WPF.Service {
         
         public System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> GetRoomsAsync(int your_id) {
             return base.Channel.GetRoomsAsync(your_id);
+        }
+        
+        public WPF.Service.RoomDTO[] getSearchRooms(string Name) {
+            return base.Channel.getSearchRooms(Name);
+        }
+        
+        public System.Threading.Tasks.Task<WPF.Service.RoomDTO[]> getSearchRoomsAsync(string Name) {
+            return base.Channel.getSearchRoomsAsync(Name);
         }
     }
 }

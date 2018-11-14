@@ -32,11 +32,32 @@ namespace WPF.ViewModels
         public ObservableCollection<Room> Rooms { get; set; }
 
 
+        public User user { get; set; }
+
+
         public Room SelectedRoom { get; set; }
 
+        private string searchFriendText;
+        public string SearchFriendText
+        {
+            get { return searchFriendText; }
+            set
+            {
+                searchFriendText = value;
+                RaisePropertyChanged();
+            }
+        }
 
-
-
+        private string searchRoomText;
+        public string SearchRoomText
+        {
+            get { return searchRoomText; }
+            set
+            {
+                searchRoomText = value;
+                RaisePropertyChanged();
+            }
+        }
 
 
         private string message;
@@ -89,18 +110,18 @@ namespace WPF.ViewModels
 
         public MainViewModel(User user)
         {
-            
 
 
 
-           
 
-           
+
+
+            this.user = user;
 
             UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
             Mapper.Reset();
             Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
-             //userClient.Add_Friend(user.Id,2);
+            userClient.Add_Friend(user.Id,2);
              //userClient.Add_Friend(user.Id,3);
               Friends = new ObservableCollection<User>();
             foreach (var item in userClient.GetFriends(user.Id).ToList())
@@ -117,12 +138,16 @@ namespace WPF.ViewModels
 
 
            
-            
+           
 
             Rooms = new ObservableCollection<Room>();
-            foreach (var item in roomClient.GetRooms(user.Id))
+            var list = roomClient.GetRooms(user.Id).ToList();
+            if (list != null)
             {
-                Rooms.Add(Mapper.Map<RoomDTO, Room>(item as RoomDTO));
+                foreach (var item in list)
+                {
+                    Rooms.Add(Mapper.Map<RoomDTO, Room>(item as RoomDTO));
+                }
             }
 
         }
@@ -177,9 +202,95 @@ namespace WPF.ViewModels
             }
         }
 
-        
+        private RelayCommand searchFriendButton;
+        public RelayCommand SearchFriendButton
+        {
+            get
+            {
+
+                return searchFriendButton ??
+
+                       (searchFriendButton = new RelayCommand(obj =>
+                       {
+                           Friends.Clear();
 
 
+                           UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
+                           Mapper.Reset();
+                           Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+                           
+                          
+                          // Friends = new ObservableCollection<User>();
+                           var List = userClient.getSearchPeople(searchFriendText);
+                           foreach (var item in List)
+                           {
+
+                               Friends.Add(Mapper.Map<UserDTO, User>(item as UserDTO));
+                           }
+
+
+                       }));
+            }
+        }
+
+
+        private RelayCommand resetFriendButton;
+        public RelayCommand ResetFriendButton
+        {
+            get
+            {
+
+                return resetFriendButton ??
+
+                       (resetFriendButton = new RelayCommand(obj =>
+                       {
+
+                           Friends.Clear();
+
+                           UserClient userClient = new UserClient(new InstanceContext(new CallBackHandler()));
+                           Mapper.Reset();
+                           Mapper.Initialize(cfg => cfg.CreateMap<UserDTO, User>());
+                          
+                           
+                           foreach (var item in userClient.GetFriends(user.Id).ToList())
+                           {
+
+                               Friends.Add(Mapper.Map<UserDTO, User>(item as UserDTO));
+                           }
+
+                       }));
+            }
+        }
+
+
+        private RelayCommand searchRoomButton;
+        public RelayCommand SearchRoomButton
+        {
+            get
+            {
+
+                return searchRoomButton ??
+
+                       (searchRoomButton = new RelayCommand(obj =>
+                       {
+                           Rooms.Clear();
+
+                           RoomClient roomClient = new RoomClient(new InstanceContext(new CallBackHandler()));
+                           Mapper.Reset();
+                           Mapper.Initialize(cfg => cfg.CreateMap<RoomDTO, Room>());
+
+
+                           foreach (var item in roomClient.getSearchRooms(SearchRoomText).ToList())
+                           {
+
+                               Rooms.Add(Mapper.Map<RoomDTO, Room>(item as RoomDTO));
+                           }
+
+
+
+                       }));
+            }
+        }
 
 
     }

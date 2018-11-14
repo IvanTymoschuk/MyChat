@@ -216,4 +216,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="getSearchRooms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="getSearchRoomsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/WCF.Classes" minOccurs="0" name="getSearchRoomsResult" nillable="true" type="q13:ArrayOfRoomDTO" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

@@ -109,7 +109,27 @@
         </Grid>
 
         <StackPanel Grid.Row="1" Margin="20">
-            <Button>Search friends</Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Label Grid.ColumnSpan="3">Search Friends:</Label>
+
+                <Button Grid.Row="1"  Command="{Binding ResetFriendButton}">Reset</Button>
+
+                <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding SearchFriendText}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="2" Command="{Binding SearchFriendButton}">Search friends</Button>
+
+            </Grid>
             <ListBox ItemsSource="{Binding Friends}" SelectedItem="{Binding SelectedUser}" >
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -141,7 +161,22 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="2" Margin="20">
-            <Button>Search Rooms</Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+
+                </Grid.RowDefinitions>
+                <Label >Search Rooms:</Label>
+                <TextBox Grid.Row="1" Text="{Binding SearchRoomText}"></TextBox>
+                <Button Grid.Row="1" Grid.Column="1" Command="{Binding SearchRoomButton}">Search friends</Button>
+
+            </Grid>
             <ListBox  ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedRoom}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>

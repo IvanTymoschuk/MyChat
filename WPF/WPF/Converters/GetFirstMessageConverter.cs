@@ -13,7 +13,10 @@ namespace WPF.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return (value as List<Message>).Last().Body; 
+
+
+            return 0;
+           //return (value as List<Message>).Last().Body; 
         }
 
        
