@@ -328,13 +328,13 @@ namespace WCF
         {
             try
             {
-               // Add_Friend(2, 1);
+              //  Add_Friend(2, 1);
                 Mapper.Reset();
                 Mapper.Initialize(cfg => cfg.CreateMap<User, UserDTO>());
                 List<UserDTO> users = new List<UserDTO>();
                 //users.Add(new UserDTO() { Name = db.Users.FirstOrDefault(x => x.Id == id).Friends.Count.ToString() });
 
-                foreach (var el in db.Users.FirstOrDefault(x => x.Id == id).Friends)
+                foreach (var el in db.Users.Include("Friends").FirstOrDefault(x => x.Id == id).Friends)
                 {
                  
                     UserDTO user = Mapper.Map<User, UserDTO>(el);

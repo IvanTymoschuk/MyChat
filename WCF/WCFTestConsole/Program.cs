@@ -25,7 +25,7 @@ namespace WCFTestConsole
             //{
                 CallBackHandler callBackHandler = new CallBackHandler();
                 UserClient userClient = new UserClient(new InstanceContext(callBackHandler));
-                Console.WriteLine(userClient.GetFriends(1).ToList().Count.ToString());
+                Console.WriteLine(userClient.GetFriends(2).ToList().Count.ToString());
 
            
              
