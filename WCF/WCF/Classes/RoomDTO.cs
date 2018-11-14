@@ -23,6 +23,7 @@ namespace WCF.Classes
       //  public UserDTO User { get; set; }
         [DataMember]
         public List<UserDTO> Users { get; set; }
+        [DataMember]
         public List<MessageDTO> Messages { get; set; }
         [DataMember]
         public bool IsPublish { get; set; }

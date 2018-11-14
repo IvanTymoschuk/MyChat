@@ -50,7 +50,7 @@ namespace WCFTestConsole
             //MessageDTO msg = new MessageDTO() { Body = "123", DateTimeSended = DateTime.Now, Room = room, Sender = userClient.GetUserId(1) };
            //roomClient.SendMessageAllUsersInRoom(room,msg);
             Console.WriteLine("Done");
-            var l = roomClient.getSearchRooms("Room");
+            var l = roomClient.GetRooms(1);
             foreach (var el in l)
             {
                 Console.WriteLine(el.Name);

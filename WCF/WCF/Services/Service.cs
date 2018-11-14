@@ -316,14 +316,19 @@ namespace WCF
             try
             {
                 List<RoomDTO> rooms = new List<RoomDTO>();
-                Mapper.Reset();
-                Mapper.Initialize(cfg => cfg.CreateMap<Room, RoomDTO>());
+           
                 foreach (var el in db.Users.Include("Rooms").FirstOrDefault(x => x.Id == your_id).Rooms)
                 {
 
+                    Mapper.Reset();
+                    Mapper.Initialize(cfg => cfg.CreateMap<List<Message>, List<MessageDTO>>());
+                    List<MessageDTO> msgs = Mapper.Map<List<Message>, List<MessageDTO>>(el.Messages);
 
-                    RoomDTO room = Mapper.Map<Room, RoomDTO>(el);
-                    rooms.Add(room);
+                    Mapper.Reset();
+                    Mapper.Initialize(cfg => cfg.CreateMap<List<User>, List<UserDTO>>());
+                    List<UserDTO> userDTOs = Mapper.Map<List<User>, List<UserDTO>>(el.Users);
+
+                    rooms.Add(new RoomDTO() { Users = userDTOs, Messages = msgs, Id = el.Id, IsPublish = el.IsPublish, Name = el.Name });
                 }
                 return rooms;
             }
@@ -376,15 +381,22 @@ namespace WCF
         {
             try
             {
+
                 List<RoomDTO> SearchRooms = new List<RoomDTO>();
-                Mapper.Reset();
-                Mapper.Initialize(cfg => cfg.CreateMap<Room, RoomDTO>());
-                foreach (var el in db.Rooms)
+
+            foreach (var el in db.Rooms)
                 {
                     if (el.Name.Contains(Name) == true)
                     {
-                        RoomDTO room = Mapper.Map<Room, RoomDTO>(el);
-                        SearchRooms.Add(room);
+                        Mapper.Reset();
+                        Mapper.Initialize(cfg => cfg.CreateMap<List<Message>, List<MessageDTO>>());
+                        List<MessageDTO> msgs = Mapper.Map<List<Message>, List<MessageDTO>>(el.Messages);
+
+                        Mapper.Reset();
+                        Mapper.Initialize(cfg => cfg.CreateMap<List<User>, List<UserDTO>>());
+                        List<UserDTO> userDTOs = Mapper.Map<List<User>, List<UserDTO>>(el.Users);
+
+                        SearchRooms.Add(new RoomDTO() { Users=userDTOs, Messages = msgs, Id=el.Id, IsPublish= el.IsPublish, Name = el.Name });
                     }
                 }
                 return SearchRooms;

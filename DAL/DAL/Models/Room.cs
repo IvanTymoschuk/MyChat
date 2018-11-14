@@ -14,14 +14,17 @@ namespace DAL.Models
             Messages = new List<Message>();
             Users = new List<User>();
         }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
-
-        //public User User { get; set; }
+        //  [DataMember]
+        //  public UserDTO User { get; set; }
+     
         public List<User> Users { get; set; }
-        public List<Message> Messages { get; set; }
 
+        public List<Message> Messages { get; set; }
+ 
         public bool IsPublish { get; set; }
 
 
